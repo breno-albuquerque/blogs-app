@@ -6,23 +6,10 @@ const userSchema = (sequelize, DataTypes) => {
       autoIncrement: true,
       allowNull: false
     },
-    displayName: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },  
+    displayName: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    image: DataTypes.STRING,
   }, { timestamps: false });
 
   return userTable;
