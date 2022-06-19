@@ -34,7 +34,8 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('now'),
         allowNull: false
-      }
+      },
+
     });
   },
 
