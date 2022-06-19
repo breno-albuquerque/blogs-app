@@ -1,5 +1,5 @@
 const blogPostSchema = (sequelize, DataTypes) => {
-  const blogPostSchema = sequelize.define('BlogPost', {
+  const blogPostTable = sequelize.define('BlogPost', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -7,8 +7,15 @@ const blogPostSchema = (sequelize, DataTypes) => {
     },
     title: DataTypes.STRING,
     content: DataTypes.STRING,
-    userId: DataTypes.INTEGER,
+    userId: {
+      type: DataTypes.INTEGER,
+      foreignKey: true
+    },
     published: DataTypes.TIMESTAMP,
     updated: DataTypes.TIMESTAMP,
-  }, { timestamp: false })
+  }, { timestamp: false });
+
+  return blogPostTable;
 }
+
+module.exports = blogPostSchema;
