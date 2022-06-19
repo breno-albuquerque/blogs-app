@@ -1,22 +1,29 @@
 const postCategorySchema = (sequelize, DataTypes) => {
-  const postCategoryTable = sequelize.define('PostCategory', {},
+  const postCategoryTable = sequelize.define('PostCategory', {
+    postId: {
+      type: DataTypes.INTEGER,
+      foreignKey: true
+    },
+    categoryId: {
+      type: DataTypes.INTEGER,
+      foreignKey: true
+    }
+  },
   { timestamps: false });
 
   postCategoryTable.associate = (models) => {
-    postCategoryTable.hasMany(models.BlogPost, {
-      foreignKey: 'postId',
-      as: 'posts',
+    models.Category.belongsToMany(models.BlogPost, {
       through: postCategoryTable,
-      otherKey: 'categoryId'
-    });
-  }
-
-  postCategoryTable.associate = (models) => {
-    postCategoryTable.hasMany(models.Categories, {
       foreignKey: 'categoryId',
-      as: 'category',
+      otherKey: 'postId',
+      as: 'posts',
+    });
+
+    models.BlogPost.belongsToMany(models.Category, {
       through: postCategoryTable,
-      otherKey: 'postId'
+      foreignKey: 'postId',
+      otherKey: 'categoryId',
+      as: 'category',
     });
   }
 
