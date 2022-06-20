@@ -13,7 +13,7 @@ const blogPostSchema = (sequelize, DataTypes) => {
     },
     published: DataTypes.DATE,
     updated: DataTypes.DATE,
-  });
+  }, { timestamps: false });
 
   blogPostTable.associate = (models) => {
     blogPostTable.belongsTo(models.User, {

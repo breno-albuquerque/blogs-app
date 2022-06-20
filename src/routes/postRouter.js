@@ -5,6 +5,6 @@ const Router = express.Router();
 const postController = require('../controllers/postController');
 const middlewares = require('../middlewares');
 
-/* Router.post('/', middlewares.loginValidation, postController.login); */
+Router.post('/', middlewares.validateToken, postController.create);
 
 module.exports = Router;
