@@ -11,8 +11,8 @@ const blogPostSchema = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       foreignKey: true
     },
-    published: DataTypes.TIMESTAMP,
-    updated: DataTypes.TIMESTAMP,
+    published: DataTypes.DATE,
+    updated: DataTypes.DATE,
   });
 
   blogPostTable.associate = (models) => {
