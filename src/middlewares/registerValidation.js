@@ -1,8 +1,8 @@
-//  https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
-const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
+//  https://www.w3resource.com/javascript/form/email-validation.php
+const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const CustomError = require('../helpers/CustomError');
 
-async function validateFieldsPresence(req, _res, next) {
+function validateFieldsPresence(req, _res, next) {
   const { displayName, email, password, image } = req.body;
 
   if (!displayName || !email || !password || !image) {
@@ -12,7 +12,7 @@ async function validateFieldsPresence(req, _res, next) {
   next();
 }
 
-async function validadeFieldsRules(req, _res, next) {
+function validadeFieldsRules(req, _res, next) {
   const { displayName, email, password } = req.body;
 
   if (displayName.length < 8) {
