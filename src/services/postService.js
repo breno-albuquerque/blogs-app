@@ -47,8 +47,8 @@ const create = async ({ title, content, categoryIds }, { id }) => {
   return fullPost.dataValues;
 };
 
-const get = async (id) => {
-  const post = await BlogPost.findAll({
+const getAll = async () => {
+  const posts = await BlogPost.findAll({
     include: [
       {
         model: User,
@@ -65,11 +65,33 @@ const get = async (id) => {
     ],
   });
 
-/*   console.log(post); */
+  return posts;
+};
+
+const getOne = async (id) => {
+  const post = await BlogPost.findAll({
+    where: { id },
+    include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: {
+          exclude: 'password',
+        },
+      },
+      {
+        model: Category,
+        as: 'categories',
+        through: { attributes: [] },
+      },
+    ],
+  });
+
   return post;
 };
 
 module.exports = {
   create,
-  get,
+  getAll,
+  getOne,
 };

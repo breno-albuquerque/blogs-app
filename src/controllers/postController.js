@@ -1,3 +1,4 @@
+const CustomError = require('../helpers/CustomError');
 const postService = require('../services/postService');
 
 const create = async (req, res, next) => {
@@ -9,10 +10,26 @@ const create = async (req, res, next) => {
   }
 };
 
-const get = async (req, res, next) => {
+const getAll = async (req, res, next) => {
   try {
-    const post = await postService.get();
-    res.status(200).json(post);
+    const posts = await postService.getAll();
+    res.status(200).json(posts);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getOne = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const post = await postService.getOne(id);
+
+    if (post.length === 0) {
+      throw new CustomError(404, 'Post does not exist');
+    }
+
+    res.status(200).json(post[0]);
   } catch (error) {
     next(error);
   }
@@ -20,5 +37,6 @@ const get = async (req, res, next) => {
 
 module.exports = {
   create,
-  get,
+  getAll,
+  getOne,
 };
