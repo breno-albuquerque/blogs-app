@@ -25,16 +25,16 @@ const create = async ({ title, content, categoryIds }, { id }) => {
 
   // Transaction:
   await sequelize.transaction(async (t) => {
-    //  Cria coluna no BlogPost
-    const post = await BlogPost.create({
+    //  Cria coluna no BlogPost:
+    await BlogPost.create({
       title,
       content,
       categoryIds,
       userId: id,
     }, { transaction: t });
 
-    //  Cria coluna(s) no postCategory
-    const categories = await PostCategory.bulkCreate(
+    //  Cria coluna(s) no postCategory:
+    await PostCategory.bulkCreate(
       categoryIds.map((categoryId) => ({
         categoryId,
         postId: id,
@@ -42,6 +42,7 @@ const create = async ({ title, content, categoryIds }, { id }) => {
     );
   });
 
+  //  Retorna dados do post criado:
   const fullPost = await BlogPost.findOne({ where: { title } });
   return fullPost.dataValues;
 };

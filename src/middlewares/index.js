@@ -2,6 +2,7 @@ const { validateFieldsPresence, validadeFieldsRules } = require('./registerValid
 const loginValidation = require('./loginValidation');
 const errorMiddleware = require('./errorMiddleware');
 const validateToken = require('./validateToken');
+const validatePost = require('./validatePost');
 
 module.exports = {
   loginValidation,
@@ -9,4 +10,5 @@ module.exports = {
   validateFieldsPresence,
   validadeFieldsRules,
   validateToken,
+  validatePost,
 };
