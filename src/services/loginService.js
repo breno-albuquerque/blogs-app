@@ -1,14 +1,20 @@
 const { User } = require('../database/models');
 const CustomError = require('../helpers/CustomError');
+const { generateToken } = require('../helpers/JwtToken');
 
-const login = async (email, password) => {
-  const user = await User.findOne({ where: { email } });
+const login = async ({ email, password }) => {
+  const user = await User.findOne({
+    attributes: ['id', 'displayName', 'email', 'image'],
+    where: { email, password },
+  });
 
-  if (user.password !== password) {
+  if (!user) {
     throw new CustomError(400, 'Invalid fields');
   }
 
-  return user;
+  const token = generateToken(user.dataValues);
+
+  return token;
 };
 
 module.exports = {
