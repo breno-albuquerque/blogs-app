@@ -10,4 +10,6 @@ Router.post('/',
   middlewares.validadeFieldsRules,
   userController.register);
 
+Router.get('/', middlewares.validateToken, userController.getAll);
+
 module.exports = Router;
