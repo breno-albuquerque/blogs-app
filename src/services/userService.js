@@ -13,7 +13,7 @@ const register = async ({ displayName, email, password, image }) => {
   const newUser = await User.create({
     displayName, email, password, image,
   });
-  const token = generateToken({ 
+  const token = generateToken({
     displayName: newUser.dataValues.displayName,
     email: newUser.dataValues.email,
    });
@@ -22,7 +22,9 @@ const register = async ({ displayName, email, password, image }) => {
 };
 
 const getAll = async () => {
-  const users = await User.findAll();
+  const users = await User.findAll({
+    attributes: { exclude: 'password' },
+  });
 
   return users;
 };

@@ -12,8 +12,6 @@ const login = async ({ email, password }) => {
     throw new CustomError(400, 'Invalid fields');
   }
 
-  console.log(user.dataValues);
-
   const token = generateToken(user.dataValues);
 
   return token;
