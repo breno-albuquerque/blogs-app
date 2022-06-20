@@ -14,6 +14,7 @@ const register = async ({ displayName, email, password, image }) => {
     displayName, email, password, image,
   });
   const token = generateToken({
+    id: newUser.dataValues.id,
     displayName: newUser.dataValues.displayName,
     email: newUser.dataValues.email,
    });

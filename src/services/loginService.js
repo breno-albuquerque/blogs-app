@@ -4,7 +4,7 @@ const { generateToken } = require('../helpers/JwtToken');
 
 const login = async ({ email, password }) => {
   const user = await User.findOne({
-    attributes: ['displayName', 'email'],
+    attributes: ['id', 'displayName', 'email'],
     where: { email, password },
   });
 
