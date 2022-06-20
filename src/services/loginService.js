@@ -4,13 +4,15 @@ const { generateToken } = require('../helpers/JwtToken');
 
 const login = async ({ email, password }) => {
   const user = await User.findOne({
-    attributes: ['id', 'displayName', 'email', 'image'],
+    attributes: ['displayName', 'email'],
     where: { email, password },
   });
 
   if (!user) {
     throw new CustomError(400, 'Invalid fields');
   }
+
+  console.log(user.dataValues);
 
   const token = generateToken(user.dataValues);
 

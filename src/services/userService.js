@@ -13,7 +13,10 @@ const register = async ({ displayName, email, password, image }) => {
   const newUser = await User.create({
     displayName, email, password, image,
   });
-  const token = generateToken(newUser.dataValues);
+  const token = generateToken({ 
+    displayName: newUser.dataValues.displayName,
+    email: newUser.dataValues.email,
+   });
 
   return token;
 };
