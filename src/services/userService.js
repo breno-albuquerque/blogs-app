@@ -21,15 +21,25 @@ const register = async ({ displayName, email, password, image }) => {
   return token;
 };
 
-const getAll = async () => {
-  const users = await User.findAll({
-    attributes: { exclude: 'password' },
-  });
+const get = async (id) => {
+  if (!id) {
+    const users = await User.findAll({
+      attributes: { exclude: 'password' },
+    });
+  
+    return users;
+  }
 
-  return users;
+  const user = await User.findOne({
+    attributes: { exclude: 'password' },
+    where: { id },
+  });
+  if (!user) throw new CustomError('404', 'User does not exist');
+
+  return user;
 };
 
 module.exports = {
   register,
-  getAll,
+  get,
 };

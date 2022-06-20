@@ -9,9 +9,11 @@ const register = async (req, res, next) => {
   }
 };
 
-const getAll = async (_req, res, next) => {
+const get = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    const users = await userService.getAll();
+    const users = await userService.get(id);
     res.status(200).json(users);
   } catch (error) {
     next(error);
@@ -20,5 +22,5 @@ const getAll = async (_req, res, next) => {
 
 module.exports = {
   register,
-  getAll,
+  get,
 };
