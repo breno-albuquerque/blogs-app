@@ -13,7 +13,7 @@ function generateToken(payload) {
 }
 
 function verifyToken(token) {
-  jwt.verify(token, SECRET, jwtConfig);
+  return jwt.verify(token, SECRET, jwtConfig);
 }
 
 module.exports = {

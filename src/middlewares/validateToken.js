@@ -6,7 +6,8 @@ function validateToken(req, res, next) {
   if (!token) throw new CustomError('401', 'Token not found');
 
   try {
-    verifyToken(token);
+    const decrypted = verifyToken(token);
+    req.user = decrypted;
   } catch (error) {
     res.status(401).json({ message: 'Expired or invalid token' });
   }
