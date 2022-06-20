@@ -26,7 +26,7 @@ const create = async ({ title, content, categoryIds }, { id }) => {
   // Transaction:
   await sequelize.transaction(async (t) => {
     //  Cria coluna no BlogPost:
-    await BlogPost.create({
+    const post = await BlogPost.create({
       title,
       content,
       categoryIds,
@@ -37,7 +37,7 @@ const create = async ({ title, content, categoryIds }, { id }) => {
     await PostCategory.bulkCreate(
       categoryIds.map((categoryId) => ({
         categoryId,
-        postId: id,
+        postId: post.dataValues.id,
       })), { transaction: t },
     );
   });
