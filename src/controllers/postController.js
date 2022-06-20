@@ -9,6 +9,16 @@ const create = async (req, res, next) => {
   }
 };
 
+const get = async (req, res, next) => {
+  try {
+    const post = await postService.get();
+    res.status(200).json(post);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   create,
+  get,
 };
