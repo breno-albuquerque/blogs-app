@@ -1,9 +1,9 @@
 const CustomError = require('../helpers/CustomError');
 
 function validatePost(req, _res, next) {
-  const { title, content, categotyIds } = req.body;
+  const { title, content, categoryIds } = req.body;
 
-  if (!title || !content || !categotyIds) {
+  if (!title || !content || categoryIds === undefined) {
     throw new CustomError('400', 'Some required fields are missing');
   }
 
