@@ -12,6 +12,16 @@ const create = async (req, res, next) => {
   }
 };
 
+const get = async (req, res, next) => {
+  try {
+    const categories = await categoryService.get();
+    res.status(200).json(categories);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   create,
+  get,
 };
