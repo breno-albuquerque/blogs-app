@@ -53,9 +53,7 @@ const getAll = async () => {
       {
         model: User,
         as: 'user',
-        attributes: {
-          exclude: 'password',
-        },
+        attributes: { exclude: 'password' },
       },
       {
         model: Category,
@@ -75,9 +73,7 @@ const getOne = async (id) => {
       {
         model: User,
         as: 'user',
-        attributes: {
-          exclude: 'password',
-        },
+        attributes: { exclude: 'password' },
       },
       {
         model: Category,
@@ -86,14 +82,14 @@ const getOne = async (id) => {
       },
     ],
   });
-
+  
   return post;
 };
 
 const update = async (postId, { id }, { title, content }) => {
   //  Verifica se o post existe e se pertence ao usuário:
   const post = await getOne(postId);
-  if (!post) throw new CustomError(404, 'Post not found');
+  if (!post) throw new CustomError(404, 'Post does not exist');
   if (post.dataValues.userId !== id) throw new CustomError(401, 'Unauthorized user');
 
   await BlogPost.update({
@@ -102,9 +98,20 @@ const update = async (postId, { id }, { title, content }) => {
   }, { where: { id: postId } });
 };
 
+const remove = async (postId, { id }) => {
+  //  Verifica se o post existe e se pertence ao usuário:
+  const post = await getOne(postId);
+  if (!post) throw new CustomError(404, 'Post does not exist');
+  if (post.dataValues.userId !== id) throw new CustomError(401, 'Unauthorized user');
+
+  //  Deleta de BlogPost e PostCategory (onDelete: 'CASCADE')
+  await BlogPost.destroy({ where: { id: postId } });
+};
+
 module.exports = {
   create,
   getAll,
   getOne,
   update,
+  remove,
 };

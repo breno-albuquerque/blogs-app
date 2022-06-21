@@ -9,5 +9,6 @@ Router.post('/', middlewares.validateToken, middlewares.validatePost, postContro
 Router.get('/', middlewares.validateToken, postController.getAll);
 Router.get('/:id', middlewares.validateToken, postController.getOne);
 Router.put('/:id', middlewares.validateToken, postController.update);
+Router.delete('/:id', middlewares.validateToken, postController.remove);
 
 module.exports = Router;

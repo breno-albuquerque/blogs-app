@@ -17,6 +17,7 @@ const postCategorySchema = (sequelize, DataTypes) => {
       foreignKey: 'categoryId',
       otherKey: 'postId',
       as: 'post',
+      onDelete: 'CASCADE'
     });
 
     models.BlogPost.belongsToMany(models.Category, {

@@ -35,7 +35,6 @@ module.exports = {
         defaultValue: Sequelize.fn('now'),
         allowNull: false
       },
-
     });
   },
 

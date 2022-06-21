@@ -51,9 +51,20 @@ const update = async (req, res, next) => {
   }
 };
 
+const remove = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await postService.remove(id, req.user);
+    res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   create,
   getAll,
   getOne,
   update,
+  remove,
 };
