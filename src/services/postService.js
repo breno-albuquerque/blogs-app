@@ -69,7 +69,7 @@ const getAll = async () => {
 };
 
 const getOne = async (id) => {
-  const post = await BlogPost.findAll({
+  const post = await BlogPost.findOne({
     where: { id },
     include: [
       {
@@ -90,8 +90,21 @@ const getOne = async (id) => {
   return post;
 };
 
+const update = async (postId, { id }, { title, content }) => {
+  //  Verifica se o post existe e se pertence ao usuário:
+  const post = await getOne(postId);
+  if (!post) throw new CustomError(404, 'Post not found');
+  if (post.dataValues.userId !== id) throw new CustomError(401, 'Unauthorized user');
+
+  await BlogPost.update({
+    title,
+    content,
+  }, { where: { id: postId } });
+};
+
 module.exports = {
   create,
   getAll,
   getOne,
+  update,
 };
