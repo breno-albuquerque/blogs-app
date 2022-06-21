@@ -12,5 +12,6 @@ Router.post('/',
 
 Router.get('/', middlewares.validateToken, userController.get);
 Router.get('/:id', middlewares.validateToken, userController.get);
+Router.delete('/me', middlewares.validateToken, userController.remove);
 
 module.exports = Router;
