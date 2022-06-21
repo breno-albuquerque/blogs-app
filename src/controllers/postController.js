@@ -24,10 +24,6 @@ const getOne = async (req, res, next) => {
     const { id } = req.params;
     const post = await postService.getOne(id);
 
-    if (!post) {
-      throw new CustomError(404, 'Post does not exist');
-    }
-
     res.status(200).json(post.dataValues);
   } catch (error) {
     next(error);

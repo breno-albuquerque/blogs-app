@@ -83,13 +83,13 @@ const getOne = async (id) => {
     ],
   });
   
+  if (!post) throw new CustomError(404, 'Post does not exist');
   return post;
 };
 
 const update = async (postId, { id }, { title, content }) => {
   //  Verifica se o post existe e se pertence ao usuário:
   const post = await getOne(postId);
-  if (!post) throw new CustomError(404, 'Post does not exist');
   if (post.dataValues.userId !== id) throw new CustomError(401, 'Unauthorized user');
 
   await BlogPost.update({
@@ -101,7 +101,6 @@ const update = async (postId, { id }, { title, content }) => {
 const remove = async (postId, { id }) => {
   //  Verifica se o post existe e se pertence ao usuário:
   const post = await getOne(postId);
-  if (!post) throw new CustomError(404, 'Post does not exist');
   if (post.dataValues.userId !== id) throw new CustomError(401, 'Unauthorized user');
 
   //  Deleta de BlogPost e PostCategory (onDelete: 'CASCADE')
