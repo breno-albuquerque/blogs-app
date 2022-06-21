@@ -57,10 +57,21 @@ const remove = async (req, res, next) => {
   }
 };
 
+const getByQuery = async (req, res, next) => {
+  try {
+    console.log(req.query);
+    const posts = await postService.getByQuery(req.query);
+    res.status(200).json(posts);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   create,
   getAll,
   getOne,
   update,
   remove,
+  getByQuery,
 };

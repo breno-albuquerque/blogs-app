@@ -4,6 +4,7 @@ const CustomError = require('../helpers/CustomError');
 const config = require('../database/config/config.js');
 
 const sequelize = new Sequelize(config.development);
+const { Op } = Sequelize;
 
 async function verifyCategories(categories) {
   const categoryPromise = [];
@@ -107,10 +108,34 @@ const remove = async (postId, { id }) => {
   await BlogPost.destroy({ where: { id: postId } });
 };
 
+const getByQuery = async (query) => {
+  // WHERE title LIKE %query.q% OR content LIKE %query.q%
+  const posts = await await BlogPost.findAll({
+    where: { [Op.or]: [
+        { title: { [Op.like]: `%${query.q}%` } }, { content: { [Op.like]: `%${query.q}%` } },
+      ] },
+    include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: { exclude: 'password' },
+      },
+      {
+        model: Category,
+        as: 'categories',
+        through: { attributes: [] },
+      },
+    ],
+  });
+
+  return posts;
+};
+
 module.exports = {
   create,
   getAll,
   getOne,
   update,
   remove,
+  getByQuery,
 };
