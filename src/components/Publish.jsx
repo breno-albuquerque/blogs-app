@@ -22,8 +22,8 @@ const Form = styled.form`
   margin: auto;
 `;
 
-function Create() {
-  const [categoriesState, setCategoriesState] = useState([]);
+function Publish() {
+  const [categoriesState, setCategoriesState] = useState();
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [postData, setPostData] = useState({
     title: '',
@@ -87,13 +87,14 @@ function Create() {
         name="content"
       />
 
-      { categoriesState.map((category) => {
+      { categoriesState && categoriesState.map((category) => {
         const { name, id } = category;
 
         return (
-          <label key={id} htmlFor={category}>
+          <label key={id} htmlFor={name}>
             <input
-              id={category}
+              name={name}
+              id={name}
               type="checkbox"
               onChange={({ target }) => handleCheckboxChange(target, id)}
             />
@@ -106,4 +107,4 @@ function Create() {
   );
 }
 
-export default Create;
+export default Publish;

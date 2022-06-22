@@ -6,10 +6,10 @@ import {
 } from './services/requests';
 
 import BlogPosts from './components/BlogPosts';
-import Create from './components/Create';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
+import Publish from './components/Publish';
 
 function App() {
   useEffect(() => {
@@ -32,7 +32,7 @@ function App() {
       <Route exact path="/register" element={<Register />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/blogPosts" element={<BlogPosts />} />
-      <Route exact path="/create" element={<Create />} />
+      <Route exact path="/publish" element={<Publish />} />
     </Routes>
   );
 }
