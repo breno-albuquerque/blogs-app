@@ -5,7 +5,7 @@ import { getUsers } from "./services/requests";
 function App() {
   useEffect(() => {
     const fetchUsers = async () => {
-      const users = await getUsers();
+      const users = await getUsers(2);
 
     }
 
