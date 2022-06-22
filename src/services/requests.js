@@ -23,6 +23,10 @@ const mockPublish = {
   categoryIds: [1, 2]
 }
 
+const mockCategories = {
+  name: "Typescript"
+}
+
 export const getUsers = async (id = null) => {
   let endpoint;
 
@@ -60,5 +64,10 @@ export const login = async () => {
 
 export const publish = async () => {
   const response = await instance.post('/post', mockPublish);
+  return response.data;
+}
+
+export const createCategory = async () => {
+  const response = await instance.post('/categories', mockCategories);
   return response.data;
 }
