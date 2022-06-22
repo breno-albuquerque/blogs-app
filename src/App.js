@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 
-import { getUsers, getBlogPosts, getCategories } from "./services/requests";
+import { getUsers, getBlogPosts, getCategories, register } from "./services/requests";
 
 function App() {
   useEffect(() => {
     const fetchUsers = async () => {
       //  const users = await getUsers(2);
       //  const blogPosts = await getBlogPosts('Post');
-      const categories = await getCategories();
+      //  const categories = await getCategories();
+      const token = await register();
+      console.log(token)
     }
 
     fetchUsers();
