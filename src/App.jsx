@@ -10,6 +10,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import Publish from './components/Publish';
+import Categories from './components/Categories';
 
 function App() {
   useEffect(() => {
@@ -33,6 +34,7 @@ function App() {
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/blogPosts" element={<BlogPosts />} />
       <Route exact path="/publish" element={<Publish />} />
+      <Route exact path="/categories" element={<Categories />} />
     </Routes>
   );
 }
