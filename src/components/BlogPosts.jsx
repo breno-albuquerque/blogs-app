@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 function BlogPosts() {
   return (
     <div>BlogPosts</div>
-  )
+  );
 }
 
-export default BlogPosts
+export default BlogPosts;

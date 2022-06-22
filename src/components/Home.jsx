@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router';
 
 const Container = styled.main`
   display: flex;
@@ -20,21 +20,33 @@ const Container = styled.main`
   top: 0; bottom: 0;
   left: 0; right: 0;
   margin: auto;
-`
+`;
 
 function Home() {
   const navigate = useNavigate();
 
   const handleClick = (endpoint) => {
-    navigate(`/${endpoint}`)
-  }
+    navigate(`/${endpoint}`);
+  };
 
   return (
     <Container>
-      <button onClick={ () => handleClick('register') } >Register</button>
-      <button onClick={ () => handleClick('login') }>Login</button>
+      <button
+        type="button"
+        onClick={() => handleClick('register')}
+      >
+        Register
+
+      </button>
+      <button
+        type="button"
+        onClick={() => handleClick('login')}
+      >
+        Login
+
+      </button>
     </Container>
-  )
+  );
 }
 
-export default Home
+export default Home;
