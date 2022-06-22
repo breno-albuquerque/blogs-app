@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const makeIntance = (token) => {
+const makeInstance = (token) => {
   const instanceToken = axios.create({
     baseURL: 'http://localhost:3000/',
     headers: { authorization: token },
@@ -25,11 +25,11 @@ const instance = axios.create({
   password: '123456',
 }; */
 
-const mockPublish = {
+/* const mockPublish = {
   title: 'Latest updates, August 1st',
   content: 'The whole text for the blog post goes here in this key',
   categoryIds: [1, 2],
-};
+}; */
 
 /* const mockCategories = {
   name: 'Typescript',
@@ -51,13 +51,13 @@ export const getBlogPosts = async (token, q = null) => {
   if (q) endpoint = `/post/search?q=${q}`;
   else endpoint = '/post';
 
-  const instanceToken = makeIntance(token);
+  const instanceToken = makeInstance(token);
   const response = await instanceToken.get(endpoint);
   return response.data;
 };
 
 export const getCategories = async (token) => {
-  const instanceToken = makeIntance(token);
+  const instanceToken = makeInstance(token);
   const response = await instanceToken.get('/categories');
   return response.data;
 };
@@ -72,13 +72,15 @@ export const login = async (userData) => {
   return response.data.token;
 };
 
-export const publish = async () => {
-  const response = await instance.post('/post', mockPublish);
+export const publish = async (token, postData) => {
+  console.log(postData);
+  const instanceToken = makeInstance(token);
+  const response = await instanceToken.post('/post', postData);
   return response.data;
 };
 
 export const createCategory = async (token, category) => {
-  const instanceToken = makeIntance(token);
+  const instanceToken = makeInstance(token);
   const response = await instanceToken.post('/categories', { name: category });
   return response.data;
 };

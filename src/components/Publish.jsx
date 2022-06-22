@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import { getCategories } from '../services/requests';
+import { getCategories, publish } from '../services/requests';
 
 const Form = styled.form`
   display: flex;
@@ -23,12 +24,13 @@ const Form = styled.form`
 `;
 
 function Publish() {
+  const navigate = useNavigate();
   const [categoriesState, setCategoriesState] = useState();
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [postData, setPostData] = useState({
     title: '',
     content: '',
-    categories: [],
+    categoryIds: [],
   });
 
   useEffect(() => {
@@ -44,7 +46,7 @@ function Publish() {
   useEffect(() => {
     setPostData((prev) => ({
       ...prev,
-      categories: checkedCategories,
+      categoryIds: checkedCategories,
     }));
   }, [checkedCategories]);
 
@@ -64,6 +66,12 @@ function Publish() {
       }
       return prev.filter((catId) => catId !== id);
     });
+  };
+
+  const handleClick = async () => {
+    const token = localStorage.getItem('token');
+    await publish(token, postData);
+    navigate('/blogPosts');
   };
 
   const { title, content } = postData;
@@ -103,6 +111,12 @@ function Publish() {
         );
       }) }
 
+      <button
+        type="button"
+        onClick={handleClick}
+      >
+        Publish
+      </button>
     </Form>
   );
 }
