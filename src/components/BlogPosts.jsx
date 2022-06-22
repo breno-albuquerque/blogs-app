@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { deleteBlogPost, getBlogPosts } from '../services/requests';
+import Header from './Header';
 
 function BlogPosts() {
   const [search, setSearch] = useState('');
@@ -47,6 +48,7 @@ function BlogPosts() {
 
   return (
     <div>
+      <Header />
       <form>
         <input
           onChange={handleChange}

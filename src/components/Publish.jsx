@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { edit, getCategories, publish } from '../services/requests';
+import Header from './Header';
 
 const Form = styled.form`
   display: flex;
@@ -83,25 +84,27 @@ function Publish() {
   const { title, content } = postData;
 
   return (
-    <Form>
-      <input
-        autoComplete="off"
-        onChange={handleChange}
-        value={title}
-        type="text"
-        placeholder="title"
-        name="title"
-      />
-      <textarea
-        autoComplete="off"
-        onChange={handleChange}
-        value={content}
-        type="text"
-        placeholder="content"
-        name="content"
-      />
+    <>
+      <Header />
+      <Form>
+        <input
+          autoComplete="off"
+          onChange={handleChange}
+          value={title}
+          type="text"
+          placeholder="title"
+          name="title"
+        />
+        <textarea
+          autoComplete="off"
+          onChange={handleChange}
+          value={content}
+          type="text"
+          placeholder="content"
+          name="content"
+        />
 
-      { (categoriesState && !location.state.editing)
+        { (categoriesState && !location.state.editing)
       && categoriesState.map((category) => {
         const { name, id } = category;
 
@@ -118,13 +121,14 @@ function Publish() {
         );
       }) }
 
-      <button
-        type="button"
-        onClick={handleClick}
-      >
-        { location.state.editing ? 'Edit' : 'Publish'}
-      </button>
-    </Form>
+        <button
+          type="button"
+          onClick={handleClick}
+        >
+          { location.state.editing ? 'Edit' : 'Publish'}
+        </button>
+      </Form>
+    </>
   );
 }
 

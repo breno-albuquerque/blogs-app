@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { createCategory } from '../services/requests';
+import Header from './Header';
 
 const Form = styled.form`
   display: flex;
@@ -40,21 +41,25 @@ function Categories() {
   };
 
   return (
-    <Form>
-      <input
-        type="text"
-        name="category"
-        value={category}
-        placeholder="New Category"
-        onChange={handleChange}
-      />
-      <button
-        type="button"
-        onClick={handleClick}
-      >
-        Create
-      </button>
-    </Form>
+    <>
+      <Header />
+      <Form>
+        <input
+          type="text"
+          name="category"
+          value={category}
+          placeholder="New Category"
+          onChange={handleChange}
+        />
+        <button
+          type="button"
+          onClick={handleClick}
+        >
+          Create
+        </button>
+      </Form>
+    </>
+
   );
 }
 
