@@ -25,3 +25,11 @@ export const getBlogPosts = async (q) => {
   const response = await instance.get(endpoint);
   console.log(response);
 }
+
+export const getCategories = async () => {
+  const response = await instance.get('/categories');
+
+  console.log(response);
+
+  return response;
+}
