@@ -8,9 +8,7 @@ const login = async ({ email, password }) => {
     where: { email, password },
   });
 
-  if (!user) {
-    throw new CustomError(400, 'Invalid fields');
-  }
+  if (!user) throw new CustomError(400, 'Invalid fields');
 
   const token = generateToken(user.dataValues);
 
