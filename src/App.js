@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { getUsers, getBlogPosts, getCategories, register, login, publish, createCategory  } from "./services/requests";
 
@@ -25,13 +25,13 @@ function App() {
   }, [])
 
   return (
-    <Switch>
+    <Routes>
       <Route exact path="/" component={ Home } />
       <Route exact path="/register" component={ Register } />
       <Route exact path="/login" component={ Login } />
       <Route exact path="/blogPosts" component={ BlogPosts } />
       <Route exact path="/create" component={ Create } />
-    </Switch>
+    </Routes>
   );
 }
 
