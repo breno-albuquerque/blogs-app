@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { getUsers, getBlogPosts, getCategories, register } from "./services/requests";
+import { getUsers, getBlogPosts, getCategories, register, login } from "./services/requests";
 
 function App() {
   useEffect(() => {
@@ -8,7 +8,8 @@ function App() {
       //  const users = await getUsers(2);
       //  const blogPosts = await getBlogPosts('Post');
       //  const categories = await getCategories();
-      const token = await register();
+      //  const token = await register();
+      const token = await login();
       console.log(token)
     }
 

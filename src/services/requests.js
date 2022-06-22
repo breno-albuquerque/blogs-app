@@ -12,6 +12,11 @@ const mockRegister = {
   image: "http://myimage.com"
 }
 
+const mockLogin = {
+  email: 'breno@gmail.com',
+  password: '123456',
+}
+
 export const getUsers = async (id = null) => {
   let endpoint;
 
@@ -39,5 +44,10 @@ export const getCategories = async () => {
 
 export const register = async () => {
   const response = await instance.post('/user', mockRegister);
+  return response.data.token;
+}
+
+export const login = async () => {
+  const response = await instance.post('/login', mockLogin);
   return response.data.token;
 }
