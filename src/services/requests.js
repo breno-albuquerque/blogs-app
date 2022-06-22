@@ -83,3 +83,9 @@ export const createCategory = async (token, category) => {
   const response = await instanceToken.post('/categories', { name: category });
   return response.data;
 };
+
+export const deleteBlogPost = async (token, userId) => {
+  const instanceToken = makeInstance(token);
+  const response = await instanceToken.delete(`/post/${userId}`);
+  return response.data;
+};

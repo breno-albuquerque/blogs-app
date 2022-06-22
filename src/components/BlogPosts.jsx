@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { getBlogPosts } from '../services/requests';
+import jwtDecode from 'jwt-decode';
+import { deleteBlogPost, getBlogPosts } from '../services/requests';
 
 function BlogPosts() {
   const [search, setSearch] = useState('');
   const [posts, setPosts] = useState([]);
+  const token = localStorage.getItem('token');
+  const decoded = jwtDecode(token);
 
   useEffect(() => {
     const fetchPost = async () => {
-      const token = localStorage.getItem('token');
       const data = await getBlogPosts(token);
       setPosts(data);
     };
@@ -21,15 +23,20 @@ function BlogPosts() {
   };
 
   const handleSearchClick = async () => {
-    const token = localStorage.getItem('token');
     const data = await getBlogPosts(token, search);
     setPosts(data);
+    setSearch('');
   };
 
   const handleAllClick = async () => {
-    const token = localStorage.getItem('token');
     const data = await getBlogPosts(token);
     setPosts(data);
+    setSearch('');
+  };
+
+  const handleRemoveClick = async () => {
+    await deleteBlogPost(token, decoded.id);
+    await handleAllClick();
   };
 
   return (
@@ -71,6 +78,14 @@ function BlogPosts() {
             </p>
             <p>{ displayName }</p>
             <img width={100} alt="profile user" src={image} />
+            { userId === decoded.id && (
+            <button
+              type="button"
+              onClick={handleRemoveClick}
+            >
+              Remove
+            </button>
+            ) }
           </article>
         );
       }) }
