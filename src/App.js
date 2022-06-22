@@ -6,7 +6,7 @@ function App() {
   useEffect(() => {
     const fetchUsers = async () => {
       //  const users = await getUsers(2);
-      const blogPosts = await getBlogPosts();
+      const blogPosts = await getBlogPosts('Post');
     }
 
     fetchUsers();

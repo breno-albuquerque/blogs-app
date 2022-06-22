@@ -16,7 +16,12 @@ export const getUsers = async (id = null) => {
   return response.data;
 }
 
-export const getBlogPosts = async () => {
-  const response = await instance.get('/post');
+export const getBlogPosts = async (q) => {
+  let endpoint;
+
+  if (q) endpoint = `/post/search?q=${q}`;
+  else endpoint = '/post';
+
+  const response = await instance.get(endpoint);
   console.log(response);
 }
