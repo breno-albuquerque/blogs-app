@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { login } from '../services/requests';
 
 const Form = styled.form`
   display: flex;
@@ -22,6 +24,8 @@ const Form = styled.form`
 `;
 
 function Login() {
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({
     email: '',
     password: '',
@@ -36,8 +40,10 @@ function Login() {
     }));
   };
 
-  const handleClick = () => {
-
+  const handleClick = async () => {
+    const token = await login(userData);
+    localStorage.setItem('token', token);
+    navigate('/blogPosts');
   };
 
   const { email, password } = userData;

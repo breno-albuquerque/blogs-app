@@ -12,10 +12,10 @@ const instance = axios.create({
   image: 'http://myimage.com',
 }; */
 
-const mockLogin = {
+/* const mockLogin = {
   email: 'breno@gmail.com',
   password: '123456',
-};
+}; */
 
 const mockPublish = {
   title: 'Latest updates, August 1st',
@@ -57,8 +57,8 @@ export const register = async (userData) => {
   return response.data.token;
 };
 
-export const login = async () => {
-  const response = await instance.post('/login', mockLogin);
+export const login = async (userData) => {
+  const response = await instance.post('/login', userData);
   return response.data.token;
 };
 
