@@ -3,6 +3,12 @@ import { Route, Switch } from "react-router-dom";
 
 import { getUsers, getBlogPosts, getCategories, register, login, publish, createCategory  } from "./services/requests";
 
+import BlogPosts from "./components/BlogPosts";
+import Create from "./components/Create";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Register from "./components/Register";
+
 function App() {
   useEffect(() => {
     const fetchUsers = async () => {
@@ -17,15 +23,14 @@ function App() {
 
     fetchUsers();
   }, [])
-  
 
   return (
     <Switch>
-      <Route exact path="/" /* component={  } */ />
-      <Route exact path="/register" /* component={  } */ />
-      <Route exact path="/login" /* component={  } */ />
-      <Route exact path="/blogPosts" /* component={  } */ />
-      <Route exact path="/create" /* component={  } */ />
+      <Route exact path="/" component={ Home } />
+      <Route exact path="/register" component={ Register } />
+      <Route exact path="/login" component={ Login } />
+      <Route exact path="/blogPosts" component={ BlogPosts } />
+      <Route exact path="/create" component={ Create } />
     </Switch>
   );
 }
