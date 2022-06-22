@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 import { register } from '../services/requests';
 
@@ -24,6 +25,8 @@ const Form = styled.form`
 `;
 
 function Register() {
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({
     displayName: '',
     email: '',
@@ -42,8 +45,8 @@ function Register() {
 
   const handleClick = async () => {
     const token = await register(userData);
-
     localStorage.setItem('token', token);
+    navigate('/blogPosts');
   };
 
   const {
