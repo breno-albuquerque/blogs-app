@@ -15,7 +15,26 @@ function BlogPosts() {
   }, [posts]);
 
   return (
-    <div>BlogPosts</div>
+    <div>
+      { posts.map((post, index) => {
+        const {
+          id, title, content, userId, published, updated, user, categories,
+        } = post;
+        const { displayName, email, image } = user;
+
+        return (
+          <article id={id}>
+            <h3>{ title }</h3>
+            <p>
+              {' '}
+              { content }
+              {' '}
+            </p>
+            <p>{ displayName }</p>
+          </article>
+        );
+      }) }
+    </div>
   );
 }
 
