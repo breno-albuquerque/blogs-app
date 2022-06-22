@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { getCategories, publish } from '../services/requests';
+import { edit, getCategories, publish } from '../services/requests';
 
 const Form = styled.form`
   display: flex;
@@ -24,7 +24,9 @@ const Form = styled.form`
 `;
 
 function Publish() {
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
+  const location = useLocation();
   const [categoriesState, setCategoriesState] = useState();
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [postData, setPostData] = useState({
@@ -36,7 +38,6 @@ function Publish() {
   //  Pega as categorias da API
   useEffect(() => {
     const fetchCategories = async () => {
-      const token = localStorage.getItem('token');
       const data = await getCategories(token);
       setCategoriesState(data);
     };
@@ -71,8 +72,11 @@ function Publish() {
   };
 
   const handleClick = async () => {
-    const token = localStorage.getItem('token');
-    await publish(token, postData);
+    if (location.state.editing) {
+      await edit(token, postData, location.state.id);
+    } else {
+      await publish(token, postData);
+    }
     navigate('/blogPosts');
   };
 
@@ -97,7 +101,8 @@ function Publish() {
         name="content"
       />
 
-      { categoriesState && categoriesState.map((category) => {
+      { (categoriesState && !location.state.editing)
+      && categoriesState.map((category) => {
         const { name, id } = category;
 
         return (
@@ -117,7 +122,7 @@ function Publish() {
         type="button"
         onClick={handleClick}
       >
-        Publish
+        { location.state.editing ? 'Edit' : 'Publish'}
       </button>
     </Form>
   );

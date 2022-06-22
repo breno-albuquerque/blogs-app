@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 import { deleteBlogPost, getBlogPosts } from '../services/requests';
 
 function BlogPosts() {
@@ -7,6 +8,7 @@ function BlogPosts() {
   const [posts, setPosts] = useState([]);
   const token = localStorage.getItem('token');
   const decoded = jwtDecode(token);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -37,6 +39,10 @@ function BlogPosts() {
   const handleRemoveClick = async () => {
     await deleteBlogPost(token, decoded.id);
     await handleAllClick();
+  };
+
+  const handleEditClick = async (id) => {
+    navigate('/publish', { state: { editing: true, id } });
   };
 
   return (
@@ -71,6 +77,12 @@ function BlogPosts() {
         return (
           <article key={id} id={id}>
             <h3>{ title }</h3>
+            { categories.map((category) => (
+              <span key={category.id}>
+                { category.name }
+                {' '}
+              </span>
+            )) }
             <p>
               {' '}
               { content }
@@ -79,12 +91,20 @@ function BlogPosts() {
             <p>{ displayName }</p>
             <img width={100} alt="profile user" src={image} />
             { userId === decoded.id && (
-            <button
-              type="button"
-              onClick={handleRemoveClick}
-            >
-              Remove
-            </button>
+              <div>
+                <button
+                  type="button"
+                  onClick={handleRemoveClick}
+                >
+                  Remove
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleEditClick(id)}
+                >
+                  Edit
+                </button>
+              </div>
             ) }
           </article>
         );

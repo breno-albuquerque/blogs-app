@@ -78,6 +78,18 @@ export const publish = async (token, postData) => {
   return response.data;
 };
 
+export const edit = async (token, postData, id) => {
+  const instanceToken = makeInstance(token);
+
+  const editData = {
+    title: postData.title,
+    content: postData.content,
+  };
+
+  const response = await instanceToken.put(`/post/${id}`, editData);
+  return response.data;
+};
+
 export const createCategory = async (token, category) => {
   const instanceToken = makeInstance(token);
   const response = await instanceToken.post('/categories', { name: category });
