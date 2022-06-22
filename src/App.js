@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 
-import { getUsers } from "./services/requests";
+import { getUsers, getBlogPosts } from "./services/requests";
 
 function App() {
   useEffect(() => {
     const fetchUsers = async () => {
-      const users = await getUsers(2);
-
+      //  const users = await getUsers(2);
+      const blogPosts = await getBlogPosts();
     }
 
     fetchUsers();

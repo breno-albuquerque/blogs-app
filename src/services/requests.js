@@ -10,8 +10,13 @@ export const getUsers = async (id = null) => {
 
   if (id) endpoint = `/user/${id}`;
   else endpoint = '/user';
-  
+
   const response = await instance.get(endpoint);
   console.log(response)
   return response.data;
+}
+
+export const getBlogPosts = async () => {
+  const response = await instance.get('/post');
+  console.log(response);
 }
