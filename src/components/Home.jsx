@@ -36,14 +36,12 @@ function Home() {
         onClick={() => handleClick('register')}
       >
         Register
-
       </button>
       <button
         type="button"
         onClick={() => handleClick('login')}
       >
         Login
-
       </button>
     </Container>
   );
