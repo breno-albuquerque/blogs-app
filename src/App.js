@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
 
 import { getUsers, getBlogPosts, getCategories, register, login, publish, createCategory  } from "./services/requests";
 
@@ -11,8 +12,7 @@ function App() {
       //  const token = await register();
       //  const token = await login();
       //  const publication = await publish()
-      const category = await createCategory();
-      console.log(category);
+      //  const category = await createCategory();
     }
 
     fetchUsers();
@@ -20,7 +20,13 @@ function App() {
   
 
   return (
-    <h1>Hello from App</h1>
+    <Switch>
+      <Route exact path="/" /* component={  } */ />
+      <Route exact path="/register" /* component={  } */ />
+      <Route exact path="/login" /* component={  } */ />
+      <Route exact path="/blogPosts" /* component={  } */ />
+      <Route exact path="/create" /* component={  } */ />
+    </Switch>
   );
 }
 
