@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { getBlogPosts } from '../services/requests';
 
 function BlogPosts() {
-  const [posts, setPosts] = useState();
+  const [search, setSearch] = useState('');
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -14,8 +15,46 @@ function BlogPosts() {
     fetchPost();
   }, []);
 
+  const handleChange = ({ target }) => {
+    const { value } = target;
+    setSearch(value);
+  };
+
+  const handleSearchClick = async () => {
+    const token = localStorage.getItem('token');
+    const data = await getBlogPosts(token, search);
+    setPosts(data);
+  };
+
+  const handleAllClick = async () => {
+    const token = localStorage.getItem('token');
+    const data = await getBlogPosts(token);
+    setPosts(data);
+  };
+
   return (
     <div>
+      <form>
+        <input
+          onChange={handleChange}
+          type="text"
+          name="search"
+          value={search}
+        />
+        <button
+          type="button"
+          onClick={handleSearchClick}
+        >
+          Search
+        </button>
+        <button
+          type="button"
+          onClick={handleAllClick}
+        >
+          All
+        </button>
+      </form>
+
       { posts && posts.map((post, index) => {
         const {
           id, title, content, userId, published, updated, user, categories,

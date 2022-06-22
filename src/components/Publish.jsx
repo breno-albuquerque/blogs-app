@@ -33,6 +33,7 @@ function Publish() {
     categoryIds: [],
   });
 
+  //  Pega as categorias da API
   useEffect(() => {
     const fetchCategories = async () => {
       const token = localStorage.getItem('token');
@@ -43,6 +44,7 @@ function Publish() {
     fetchCategories();
   }, []);
 
+  //  Atualiza o array com os ids das categorias marcadas
   useEffect(() => {
     setPostData((prev) => ({
       ...prev,

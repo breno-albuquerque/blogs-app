@@ -73,7 +73,6 @@ export const login = async (userData) => {
 };
 
 export const publish = async (token, postData) => {
-  console.log(postData);
   const instanceToken = makeInstance(token);
   const response = await instanceToken.post('/post', postData);
   return response.data;
