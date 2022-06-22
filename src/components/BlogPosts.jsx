@@ -31,6 +31,7 @@ function BlogPosts() {
               {' '}
             </p>
             <p>{ displayName }</p>
+            <img width={100} alt="profile user" src={image} />
           </article>
         );
       }) }
