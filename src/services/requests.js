@@ -56,8 +56,9 @@ export const getBlogPosts = async (token, q = null) => {
   return response.data;
 };
 
-export const getCategories = async () => {
-  const response = await instance.get('/categories');
+export const getCategories = async (token) => {
+  const instanceToken = makeIntance(token);
+  const response = await instanceToken.get('/categories');
   return response.data;
 };
 

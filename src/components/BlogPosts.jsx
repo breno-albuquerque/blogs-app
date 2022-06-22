@@ -12,18 +12,18 @@ function BlogPosts() {
     };
 
     fetchPost();
-  }, [posts]);
+  }, []);
 
   return (
     <div>
-      { posts.map((post, index) => {
+      { posts && posts.map((post, index) => {
         const {
           id, title, content, userId, published, updated, user, categories,
         } = post;
         const { displayName, email, image } = user;
 
         return (
-          <article id={id}>
+          <article key={id} id={id}>
             <h3>{ title }</h3>
             <p>
               {' '}

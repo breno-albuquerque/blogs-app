@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { getCategories } from '../services/requests';
 
 const Form = styled.form`
   display: flex;
@@ -21,6 +23,51 @@ const Form = styled.form`
 `;
 
 function Create() {
+  const [categoriesState, setCategoriesState] = useState([]);
+  const [checkedCategories, setCheckedCategories] = useState([]);
+  const [postData, setPostData] = useState({
+    title: '',
+    content: '',
+    categories: [],
+  });
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const token = localStorage.getItem('token');
+      const data = await getCategories(token);
+      setCategoriesState(data);
+    };
+
+    fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    setPostData((prev) => ({
+      ...prev,
+      categories: checkedCategories,
+    }));
+  }, [checkedCategories]);
+
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
+
+    setPostData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleCheckboxChange = ({ checked }, id) => {
+    setCheckedCategories((prev) => {
+      if (checked) {
+        return [...prev, id];
+      }
+      return prev.filter((catId) => catId !== id);
+    });
+  };
+
+  const { title, content } = postData;
+
   return (
     <Form>
       <input
@@ -36,9 +83,25 @@ function Create() {
         onChange={handleChange}
         value={content}
         type="text"
-        placeholder="title"
-        name="title"
+        placeholder="content"
+        name="content"
       />
+
+      { categoriesState.map((category) => {
+        const { name, id } = category;
+
+        return (
+          <label key={id} htmlFor={category}>
+            <input
+              id={category}
+              type="checkbox"
+              onChange={({ target }) => handleCheckboxChange(target, id)}
+            />
+            { name }
+          </label>
+        );
+      }) }
+
     </Form>
   );
 }
