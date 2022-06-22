@@ -1,8 +1,16 @@
 import axios from 'axios';
 
+const makeIntance = (token) => {
+  const instanceToken = axios.create({
+    baseURL: 'http://localhost:3000/',
+    headers: { authorization: token },
+  });
+
+  return instanceToken;
+};
+
 const instance = axios.create({
   baseURL: 'http://localhost:3000/',
-  headers: { authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZGlzcGxheU5hbWUiOiJMZXdpcyBIYW1pbHRvbiIsImVtYWlsIjoibGV3aXNoYW1pbHRvbkBnbWFpbC5jb20iLCJpYXQiOjE2NTU4OTc0NTl9.ui8LGF4MLOhJuH_K-qcHfeKFdE6WwH9r4tzGX6BVpuE' },
 });
 
 /* const mockRegister = {
@@ -37,13 +45,14 @@ export const getUsers = async (id = null) => {
   return response.data;
 };
 
-export const getBlogPosts = async (q) => {
+export const getBlogPosts = async (token, q = null) => {
   let endpoint;
 
   if (q) endpoint = `/post/search?q=${q}`;
   else endpoint = '/post';
 
-  const response = await instance.get(endpoint);
+  const instanceToken = makeIntance(token);
+  const response = await instanceToken.get(endpoint);
   return response.data;
 };
 
