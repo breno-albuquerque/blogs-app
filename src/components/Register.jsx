@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { register } from '../services/requests';
+
 const Form = styled.form`
   display: flex;
   align-items: center;
@@ -38,8 +40,10 @@ function Register() {
     }));
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    const token = await register(userData);
 
+    localStorage.setItem('token', token);
   };
 
   const {
