@@ -26,11 +26,11 @@ function App() {
 
   return (
     <Routes>
-      <Route exact path="/" component={ Home } />
-      <Route exact path="/register" component={ Register } />
-      <Route exact path="/login" component={ Login } />
-      <Route exact path="/blogPosts" component={ BlogPosts } />
-      <Route exact path="/create" component={ Create } />
+      <Route exact path="/" element={<Home /> } />
+      <Route exact path="/register" element={ <Register />  } />
+      <Route exact path="/login" element={ <Login />  } />
+      <Route exact path="/blogPosts" element={ <BlogPosts />  } />
+      <Route exact path="/create" element={ <Create />  } />
     </Routes>
   );
 }
