@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   MDBContainer,
   MDBNavbar,
-  MDBNavbarBrand,
   MDBNavbarToggler,
   MDBNavbarNav,
   MDBNavbarItem,
@@ -11,6 +10,13 @@ import {
   MDBCollapse,
   MDBIcon,
 } from 'mdb-react-ui-kit';
+import styled from 'styled-components';
+
+const NavTitle = styled.h1`
+  font-size: 24px;
+  margin: 8px;
+  padding: 0;
+`;
 
 function Header() {
   const [showNav, setShowNav] = useState(false);
@@ -33,7 +39,7 @@ function Header() {
 
     <MDBNavbar expand="lg" light bgColor="light">
       <MDBContainer fluid>
-        <MDBNavbarBrand href="#">Navbar</MDBNavbarBrand>
+        <NavTitle>Blog API</NavTitle>
         <MDBNavbarToggler
           type="button"
           aria-expanded="false"
