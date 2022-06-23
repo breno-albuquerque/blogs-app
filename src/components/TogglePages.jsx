@@ -7,7 +7,7 @@ function TogglePages() {
   const handleRedirect = ({ target }) => {
     const { value } = target;
 
-    navigate(`/${value}`, { state: value });
+    navigate('/home', { state: value });
   };
 
   return (

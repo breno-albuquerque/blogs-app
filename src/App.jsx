@@ -6,8 +6,7 @@ import {
 } from './services/requests';
 
 import BlogPosts from './pages/BlogPosts';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Home from './pages/Home';
 import Publish from './pages/Publish';
 import Categories from './pages/Categories';
 
@@ -29,8 +28,6 @@ function App() {
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
-      <Route exact path="/register" element={<Register />} />
-      <Route exact path="/login" element={<Login />} />
       <Route exact path="/blogPosts" element={<BlogPosts />} />
       <Route exact path="/publish" element={<Publish />} />
       <Route exact path="/categories" element={<Categories />} />
