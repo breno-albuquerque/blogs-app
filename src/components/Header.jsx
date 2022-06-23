@@ -6,7 +6,6 @@ import {
   MDBNavbarToggler,
   MDBNavbarNav,
   MDBNavbarItem,
-  MDBBtn,
   MDBCollapse,
   MDBIcon,
   MDBNavbarLink,
@@ -14,6 +13,9 @@ import {
 import styled from 'styled-components';
 
 const NavTitle = styled.h1`
+
+  color: #222466;
+
   font-size: 28px;
   margin: 16px;
   margin-right: 24px;
@@ -41,7 +43,7 @@ function Header() {
 
     <MDBNavbar expand="lg" light bgColor="ligh">
       <MDBContainer fluid>
-        <NavTitle w-auto>Blog API</NavTitle>
+        <NavTitle>Blog API</NavTitle>
         <MDBNavbarToggler
           type="button"
           aria-expanded="false"

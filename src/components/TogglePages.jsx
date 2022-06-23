@@ -1,25 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  text-decoration: none;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+
+  color: ${(props) => props.active && 'white'};;
+  background-color: ${(props) => props.active && '#222466'};
+`;
 
 function TogglePages() {
   const navigate = useNavigate();
   const location = useLocation();
   const [active, setActive] = useState({
-    login: 'nav-link active',
-    register: 'nav-link',
+    login: true,
+    register: false,
   });
 
   useEffect(() => {
     const handleActiveButton = () => {
       if (location.state === 'login' || location.state === null) {
         setActive({
-          login: 'nav-link active',
-          register: 'nav-link',
+          login: true,
+          register: false,
         });
       } else {
         setActive({
-          login: 'nav-link ',
-          register: 'nav-link active',
+          login: false,
+          register: true,
         });
       }
     };
@@ -32,34 +44,27 @@ function TogglePages() {
     navigate('/', { state: value });
   };
 
-  const { login, register } = active;
-
   return (
     <ul className="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-      <li className="nav-item" role="presentation">
-        <button
+      <li className="nav-item">
+        <Button
           value="login"
-          style={{ width: '100%' }}
           type="button"
           onClick={handleRedirect}
-          className={login}
-          id="tab-login"
-          role="tab"
+          active={active.login}
         >
           Login
-        </button>
+        </Button>
       </li>
-      <li className="nav-item" role="presentation">
-        <button
+      <li className="nav-item">
+        <Button
           value="register"
           onClick={handleRedirect}
-          style={{ width: '100%' }}
           type="button"
-          className={register}
-          id="tab-register"
+          active={active.register}
         >
           Register
-        </button>
+        </Button>
       </li>
     </ul>
 
