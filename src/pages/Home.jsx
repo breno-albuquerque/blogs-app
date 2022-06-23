@@ -1,37 +1,70 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { login } from '../services/requests';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { login, register } from '../services/requests';
 import './Login.css';
 import LoginComponent from '../components/LoginComponent';
+import RegisterComponent from '../components/RegisterComponent';
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [userData, setUserData] = useState({
+  const [userRegisterData, setUserRegisterData] = useState({
+    displayName: '',
+    email: '',
+    password: '',
+    image: '',
+  });
+
+  const [userLoginData, setUserLoginData] = useState({
     email: '',
     password: '',
   });
 
-  const handleChange = ({ target }) => {
+  const handleRegisterChange = ({ target }) => {
     const { name, value } = target;
 
-    setUserData((prev) => ({
+    setUserRegisterData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleClick = async () => {
-    const token = await login(userData);
+  const handleLoginChange = ({ target }) => {
+    const { name, value } = target;
+
+    setUserLoginData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleRegisterClick = async () => {
+    const token = await register(userRegisterData);
     localStorage.setItem('token', token);
     navigate('/blogPosts');
   };
 
+  const handleLoginClick = async () => {
+    const token = await login(userLoginData);
+    localStorage.setItem('token', token);
+    navigate('/blogPosts');
+  };
+
+  if (location.state === '' || location.state === 'login') {
+    return (
+      <LoginComponent
+        handleChange={handleLoginChange}
+        handleClick={handleLoginClick}
+        userData={userLoginData}
+      />
+    );
+  }
   return (
-    <LoginComponent
-      handleChange={handleChange}
-      handleClick={handleClick}
-      userData={userData}
+    <RegisterComponent
+      handleChange={handleRegisterChange}
+      handleClick={handleRegisterClick}
+      userData={userRegisterData}
     />
   );
 }

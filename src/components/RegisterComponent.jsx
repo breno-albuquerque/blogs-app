@@ -2,7 +2,7 @@ import { MDBInput } from 'mdb-react-ui-kit';
 import React from 'react';
 import TogglePages from './TogglePages';
 
-function Register() {
+function RegisterComponent() {
   return (
     <section className="vh-100">
 
@@ -90,4 +90,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegisterComponent;
