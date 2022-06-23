@@ -12,8 +12,14 @@ function Header() {
   const handleRedirectClick = ({ target }) => {
     const { value } = target;
 
-    if (value === 'publish') navigate(`/${value}`, { state: { editing: false } });
-    else navigate(`/${value}`);
+    if (value === 'publish') {
+      navigate(`/${value}`, { state: { editing: false } });
+    } else if (value === 'home') {
+      localStorage.removeItem('token');
+      navigate('/');
+    } else {
+      navigate(`/${value}`);
+    }
   };
 
   return (

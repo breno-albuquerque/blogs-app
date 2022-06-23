@@ -46,6 +46,8 @@ function BlogPosts() {
     navigate('/publish', { state: { editing: true, id } });
   };
 
+  if (!token) return navigate('/');
+
   return (
     <div>
       <Header />

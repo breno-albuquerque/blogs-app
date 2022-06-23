@@ -83,6 +83,8 @@ function Publish() {
 
   const { title, content } = postData;
 
+  if (!token) return navigate('/');
+
   return (
     <>
       <Header />

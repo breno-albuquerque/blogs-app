@@ -26,6 +26,7 @@ const Form = styled.form`
 
 function Categories() {
   const [category, setCategory] = useState('');
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
   const handleChange = ({ target }) => {
@@ -35,10 +36,11 @@ function Categories() {
   };
 
   const handleClick = async () => {
-    const token = localStorage.getItem('token');
     await createCategory(token, category);
     navigate('/publish');
   };
+
+  if (!token) return navigate('/');
 
   return (
     <>
