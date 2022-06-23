@@ -24,7 +24,7 @@ function RegisterComponent({ handleChange, userData, handleClick }) {
             <TogglePages />
             <form>
               <div className="divider d-flex align-items-center my-4">
-                <p className="text-center fw-bold mx-3 mb-0">Sign-in</p>
+                <p className="text-center fw-bold mx-3 mb-0">Sign-up</p>
               </div>
 
               <div className="form-outline mb-4">
@@ -80,7 +80,7 @@ function RegisterComponent({ handleChange, userData, handleClick }) {
                 <button
                   type="button"
                   onClick={handleClick}
-                  className="btn btn-primary btn-lg"
+                  className="btn btn-primary btn-lg mb-3"
                   style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
                 >
                   Register

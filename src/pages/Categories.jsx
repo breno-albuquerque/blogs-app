@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { createCategory } from '../services/requests';
-import Header from './Header';
+import Header from '../components/Header';
 
 const Form = styled.form`
   display: flex;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { edit, getCategories, publish } from '../services/requests';
-import Header from './Header';
+import Header from '../components/Header';
 
 const Form = styled.form`
   display: flex;
