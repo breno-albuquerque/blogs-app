@@ -51,7 +51,7 @@ function Header() {
 
   return (
 
-    <MDBNavbar expand="lg" light bgColor="ligh">
+    <MDBNavbar sticky expand="lg" light bgColor="light">
       <MDBContainer fluid>
         <NavTitle>Blog API</NavTitle>
         <MDBNavbarToggler
