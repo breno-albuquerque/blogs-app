@@ -6,7 +6,6 @@ import {
 } from './services/requests';
 
 import BlogPosts from './pages/BlogPosts';
-import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Publish from './pages/Publish';
