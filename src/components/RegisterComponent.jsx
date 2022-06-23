@@ -1,6 +1,5 @@
 import { MDBInput } from 'mdb-react-ui-kit';
 import React from 'react';
-import Header from './Header';
 import TogglePages from './TogglePages';
 
 function RegisterComponent({ handleChange, userData, handleClick }) {
@@ -10,7 +9,7 @@ function RegisterComponent({ handleChange, userData, handleClick }) {
 
   return (
     <section className="vh-100">
-      <Header />
+
       <div className="container-fluid h-custom">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-md-9 col-lg-6 col-xl-5">
@@ -81,7 +80,7 @@ function RegisterComponent({ handleChange, userData, handleClick }) {
                 <button
                   type="button"
                   onClick={handleClick}
-                  className="btn btn-primary btn-lg mb-3"
+                  className="btn btn-primary btn-lg"
                   style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
                 >
                   Register
