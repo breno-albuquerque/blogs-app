@@ -6,7 +6,7 @@ import TogglePages from './TogglePages';
 
 const Button = styled.button`
   text-decoration: none;
-  width: 100%;
+  width: 110px;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -93,7 +93,7 @@ function RegisterComponent({ handleChange, userData, handleClick }) {
                   type="button"
                   onClick={handleClick}
                 >
-                  Register
+                  Sign-up
                 </Button>
               </div>
             </form>

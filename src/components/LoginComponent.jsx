@@ -6,7 +6,7 @@ import Header from './Header';
 
 const Button = styled.button`
   text-decoration: none;
-  width: 100%;
+  width: 110px;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -68,7 +68,7 @@ function LoginComponent({ handleChange, userData, handleClick }) {
                   type="button"
                   onClick={handleClick}
                 >
-                  Login
+                  Sign-in
                 </Button>
               </div>
             </form>
