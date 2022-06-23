@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBInput } from 'mdb-react-ui-kit';
+import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
 import TogglePages from './TogglePages';
 import Header from './Header';
 
@@ -53,14 +53,14 @@ function LoginComponent({ handleChange, userData, handleClick }) {
               </div>
 
               <div className="text-center text-lg-start mt-4 pt-2">
-                <button
+                <MDBBtn
                   type="button"
                   onClick={handleClick}
                   className="btn btn-primary btn-lg"
                   style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
                 >
                   Login
-                </button>
+                </MDBBtn>
               </div>
             </form>
           </div>

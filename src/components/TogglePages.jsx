@@ -18,7 +18,7 @@ function TogglePages() {
         });
       } else {
         setActive({
-          login: 'nav-link',
+          login: 'nav-link ',
           register: 'nav-link active',
         });
       }

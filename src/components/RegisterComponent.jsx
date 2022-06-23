@@ -1,4 +1,4 @@
-import { MDBInput } from 'mdb-react-ui-kit';
+import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
 import React from 'react';
 import Header from './Header';
 import TogglePages from './TogglePages';
@@ -78,14 +78,14 @@ function RegisterComponent({ handleChange, userData, handleClick }) {
               </div>
 
               <div className="text-center text-lg-start mt-4 pt-2">
-                <button
+                <MDBBtn
                   type="button"
                   onClick={handleClick}
                   className="btn btn-primary btn-lg"
                   style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
                 >
                   Register
-                </button>
+                </MDBBtn>
               </div>
             </form>
           </div>
