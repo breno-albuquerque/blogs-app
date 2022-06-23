@@ -37,7 +37,7 @@ function Categories() {
 
   const handleClick = async () => {
     await createCategory(token, category);
-    navigate('/publish');
+    navigate('/publish', { state: { editing: false } });
   };
 
   if (!token) return navigate('/');
