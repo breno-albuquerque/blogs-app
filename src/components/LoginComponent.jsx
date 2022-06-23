@@ -1,12 +1,14 @@
 import React from 'react';
 import { MDBInput } from 'mdb-react-ui-kit';
 import TogglePages from './TogglePages';
+import Header from './Header';
 
 function LoginComponent({ handleChange, userData, handleClick }) {
   const { email, password } = userData;
 
   return (
     <section className="vh-100">
+      <Header />
       <div className="container-fluid h-custom">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-md-9 col-lg-6 col-xl-5">
