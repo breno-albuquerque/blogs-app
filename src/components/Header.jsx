@@ -9,12 +9,14 @@ import {
   MDBBtn,
   MDBCollapse,
   MDBIcon,
+  MDBNavbarLink,
 } from 'mdb-react-ui-kit';
 import styled from 'styled-components';
 
 const NavTitle = styled.h1`
-  font-size: 24px;
-  margin: 8px;
+  font-size: 28px;
+  margin: 16px;
+  margin-right: 24px;
   padding: 0;
 `;
 
@@ -22,24 +24,24 @@ function Header() {
   const [showNav, setShowNav] = useState(false);
   const navigate = useNavigate();
 
-  const handleRedirectClick = ({ target }) => {
-    const { value } = target;
+  const handleRedirectClick = (event, endpoint) => {
+    event.preventDefault();
 
-    if (value === 'publish') {
-      navigate(`/${value}`, { state: { editing: false } });
-    } else if (value === 'home') {
+    if (endpoint === 'publish') {
+      navigate(`/${endpoint}`, { state: { editing: false } });
+    } else if (endpoint === 'home') {
       localStorage.removeItem('token');
       navigate('/');
     } else {
-      navigate(`/${value}`);
+      navigate(`/${endpoint}`);
     }
   };
 
   return (
 
-    <MDBNavbar expand="lg" light bgColor="light">
+    <MDBNavbar expand="lg" light bgColor="ligh">
       <MDBContainer fluid>
-        <NavTitle>Blog API</NavTitle>
+        <NavTitle w-auto>Blog API</NavTitle>
         <MDBNavbarToggler
           type="button"
           aria-expanded="false"
@@ -51,52 +53,40 @@ function Header() {
         <MDBCollapse navbar show={showNav}>
           <MDBNavbarNav>
             <MDBNavbarItem>
-              <MDBBtn
-                outline
-                color="success"
-                className="me-2"
-                value="blogPosts"
+              <MDBNavbarLink
+                className="me-3"
                 type="button"
-                onClick={handleRedirectClick}
+                onClick={(event) => handleRedirectClick(event, 'blogPosts')}
               >
                 Posts
-              </MDBBtn>
+              </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBBtn
-                outline
-                color="success"
-                className="me-2"
-                value="publish"
+              <MDBNavbarLink
+                className="me-3"
                 type="button"
-                onClick={handleRedirectClick}
+                onClick={(event) => handleRedirectClick(event, 'publish')}
               >
                 Publish
-              </MDBBtn>
+              </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBBtn
-                outline
-                color="success"
-                className="me-2"
-                value="categories"
+              <MDBNavbarLink
+                className="me-3"
                 type="button"
-                onClick={handleRedirectClick}
+                onClick={(event) => handleRedirectClick(event, 'categories')}
               >
-                categories
-              </MDBBtn>
+                Categories
+              </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBBtn
-                outline
-                color="success"
-                className="me-2"
-                value="home"
+              <MDBNavbarLink
+                className="me-3"
                 type="button"
-                onClick={handleRedirectClick}
+                onClick={(event) => handleRedirectClick(event, 'home')}
               >
                 Logout
-              </MDBBtn>
+              </MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
         </MDBCollapse>
