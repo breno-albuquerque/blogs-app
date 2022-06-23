@@ -33,9 +33,9 @@ function RegisterComponent({ handleChange, userData, handleClick }) {
                   onChange={handleChange}
                   value={displayName}
                   type="text"
-                  name="email"
+                  name="displayName"
                   className="form-control form-control-lg"
-                  label="Email"
+                  label="Nick-name"
                 />
               </div>
 
