@@ -1,11 +1,13 @@
 import React from 'react';
 import { MDBInput } from 'mdb-react-ui-kit';
+import TogglePages from './TogglePages';
 
 function LoginComponent({ handleChange, userData, handleClick }) {
   const { email, password } = userData;
 
   return (
     <section className="vh-100">
+
       <div className="container-fluid h-custom">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-md-9 col-lg-6 col-xl-5">
@@ -15,7 +17,9 @@ function LoginComponent({ handleChange, userData, handleClick }) {
               alt="Sample"
             />
           </div>
+
           <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <TogglePages />
             <form>
               <div className="divider d-flex align-items-center my-4">
                 <p className="text-center fw-bold mx-3 mb-0">Sign-in</p>
