@@ -1,27 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import {
+  MDBInput,
+  MDBTextArea,
+  MDBCheckbox,
+} from 'mdb-react-ui-kit';
 import { edit, getCategories, publish } from '../services/requests';
 import Header from '../components/Header';
+import './image.css';
 
 const Form = styled.form`
+  padding: 24px;
+`;
+
+const CheckboxContainer = styled.div`
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
   flex-direction: column;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+`;
 
-  border: solid 1px black;
-  height: 300px;
+const Button = styled.button`
+  text-decoration: none;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  
+  color: white;
+  background-color: #222466;
+`;
 
-  min-width: 300px;
-  max-width: 600px;
-
-  margin: 0 auto;
-
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 0; right: 0;
-  margin: auto;
+const Title = styled.h2`
+  text-align: center;
+  font-size: 26px;
+  color: #222466;
+  margin-bottom: 32px;
 `;
 
 function Publish() {
@@ -89,46 +108,52 @@ function Publish() {
     <>
       <Header />
       <Form>
-        <input
+        <Title>Publish your Post!</Title>
+        <MDBInput
+          type="text"
+          wrapperClass="mb-4"
+          label="Post Title"
           autoComplete="off"
           onChange={handleChange}
           value={title}
-          type="text"
-          placeholder="title"
           name="title"
         />
-        <textarea
+        <MDBTextArea
+          wrapperClass="mb-4"
+          textarea
+          rows={4}
+          label="Post Content"
           autoComplete="off"
           onChange={handleChange}
           value={content}
           type="text"
-          placeholder="content"
           name="content"
         />
 
-        { (categoriesState && !location.state.editing)
+        <CheckboxContainer>
+          { (categoriesState && !location.state.editing)
       && categoriesState.map((category) => {
         const { name, id } = category;
 
         return (
-          <label key={id} htmlFor={name}>
-            <input
-              name={name}
-              id={name}
-              type="checkbox"
-              onChange={({ target }) => handleCheckboxChange(target, id)}
-            />
-            { name }
-          </label>
+          <MDBCheckbox
+            key={id}
+            name={name}
+            id={name}
+            type="checkbox"
+            label={name}
+            onChange={({ target }) => handleCheckboxChange(target, id)}
+          />
         );
       }) }
+        </CheckboxContainer>
 
-        <button
+        <Button
           type="button"
           onClick={handleClick}
         >
           { location.state.editing ? 'Edit' : 'Publish'}
-        </button>
+        </Button>
       </Form>
     </>
   );
