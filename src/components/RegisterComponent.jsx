@@ -2,7 +2,11 @@ import { MDBInput } from 'mdb-react-ui-kit';
 import React from 'react';
 import TogglePages from './TogglePages';
 
-function RegisterComponent() {
+function RegisterComponent({ handleChange, userData, handleClick }) {
+  const {
+    email, password, displayName, image,
+  } = userData;
+
   return (
     <section className="vh-100">
 
