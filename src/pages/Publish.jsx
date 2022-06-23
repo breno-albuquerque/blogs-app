@@ -8,7 +8,6 @@ import {
 } from 'mdb-react-ui-kit';
 import { edit, getCategories, publish } from '../services/requests';
 import Header from '../components/Header';
-import './image.css';
 
 const Form = styled.form`
   padding: 24px;

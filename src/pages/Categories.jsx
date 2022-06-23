@@ -1,27 +1,35 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import {
+  MDBInput,
+} from 'mdb-react-ui-kit';
 import { createCategory } from '../services/requests';
 import Header from '../components/Header';
 
 const Form = styled.form`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  padding: 24px;
+  
+`;
 
-  border: solid 1px black;
-  height: 300px;
+const Button = styled.button`
+  text-decoration: none;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 16px;
+  
+  color: white;
+  background-color: #222466;
+`;
 
-  min-width: 300px;
-  max-width: 600px;
-
-  margin: 0 auto;
-
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 0; right: 0;
-  margin: auto;
+const Title = styled.h2`
+  text-align: center;
+  font-size: 26px;
+  color: #222466;
+  margin-bottom: 32px;
 `;
 
 function Categories() {
@@ -46,19 +54,20 @@ function Categories() {
     <>
       <Header />
       <Form>
-        <input
+        <Title>Create a new Category!</Title>
+        <MDBInput
           type="text"
           name="category"
           value={category}
-          placeholder="New Category"
+          label="New Category"
           onChange={handleChange}
         />
-        <button
+        <Button
           type="button"
           onClick={handleClick}
         >
           Create
-        </button>
+        </Button>
       </Form>
     </>
 

@@ -97,7 +97,7 @@ function Header() {
             <MDBNavbarItem>
               <MDBNavbarLink
                 disabled={isDisabled}
-                className="me-3"
+                className="me-3 text-danger"
                 type="button"
                 onClick={(event) => handleRedirectClick(event, 'home')}
               >
