@@ -1,14 +1,38 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function TogglePages() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [active, setActive] = useState({
+    login: 'nav-link active',
+    register: 'nav-link',
+  });
+
+  useEffect(() => {
+    const handleActiveButton = () => {
+      if (location.state === 'login' || location.state === null) {
+        setActive({
+          login: 'nav-link active',
+          register: 'nav-link',
+        });
+      } else {
+        setActive({
+          login: 'nav-link',
+          register: 'nav-link active',
+        });
+      }
+    };
+    handleActiveButton();
+  }, []);
 
   const handleRedirect = ({ target }) => {
     const { value } = target;
 
     navigate('/', { state: value });
   };
+
+  const { login, register } = active;
 
   return (
     <ul className="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
@@ -18,7 +42,7 @@ function TogglePages() {
           style={{ width: '100%' }}
           type="button"
           onClick={handleRedirect}
-          className="nav-link active"
+          className={login}
           id="tab-login"
           role="tab"
         >
@@ -31,7 +55,7 @@ function TogglePages() {
           onClick={handleRedirect}
           style={{ width: '100%' }}
           type="button"
-          className="nav-link"
+          className={register}
           id="tab-register"
         >
           Register

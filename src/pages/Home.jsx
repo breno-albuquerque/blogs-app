@@ -51,7 +51,7 @@ function Login() {
     navigate('/blogPosts');
   };
 
-  if (location.state === '' || location.state === 'login') {
+  if (location.state === null || location.state === 'login') {
     return (
       <LoginComponent
         handleChange={handleLoginChange}
