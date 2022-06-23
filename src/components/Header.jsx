@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   MDBContainer,
@@ -24,7 +24,17 @@ const NavTitle = styled.h1`
 
 function Header() {
   const [showNav, setShowNav] = useState(false);
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
+  const [isDisabled, setisDisabled] = useState(true);
+
+  useEffect(() => {
+    if (token) {
+      setisDisabled(false);
+    } else {
+      setisDisabled(true);
+    }
+  }, []);
 
   const handleRedirectClick = (event, endpoint) => {
     event.preventDefault();
@@ -56,6 +66,7 @@ function Header() {
           <MDBNavbarNav>
             <MDBNavbarItem>
               <MDBNavbarLink
+                disabled={isDisabled}
                 className="me-3"
                 type="button"
                 onClick={(event) => handleRedirectClick(event, 'blogPosts')}
@@ -65,6 +76,7 @@ function Header() {
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink
+                disabled={isDisabled}
                 className="me-3"
                 type="button"
                 onClick={(event) => handleRedirectClick(event, 'publish')}
@@ -74,6 +86,7 @@ function Header() {
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink
+                disabled={isDisabled}
                 className="me-3"
                 type="button"
                 onClick={(event) => handleRedirectClick(event, 'categories')}
@@ -83,6 +96,7 @@ function Header() {
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink
+                disabled={isDisabled}
                 className="me-3"
                 type="button"
                 onClick={(event) => handleRedirectClick(event, 'home')}
