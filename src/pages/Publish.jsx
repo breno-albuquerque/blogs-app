@@ -114,7 +114,6 @@ function Publish() {
         />
         <MDBTextArea
           wrapperClass="mb-4"
-          textarea
           rows={4}
           label="Post Content"
           autoComplete="off"
