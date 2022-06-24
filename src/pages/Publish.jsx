@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-  MDBInput,
-  MDBTextArea,
-  MDBCheckbox,
-} from 'mdb-react-ui-kit';
+import { MDBInput, MDBTextArea, MDBCheckbox } from 'mdb-react-ui-kit';
 import { edit, getCategories, publish } from '../services/requests';
 import Header from '../components/Header';
 
@@ -30,7 +26,6 @@ const Button = styled.button`
   padding: 10px;
   border: none;
   border-radius: 5px;
-  
   color: white;
   background-color: #222466;
 `;

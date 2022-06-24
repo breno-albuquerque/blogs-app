@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-  MDBInput,
-} from 'mdb-react-ui-kit';
+import { MDBInput } from 'mdb-react-ui-kit';
 import { createCategory } from '../services/requests';
 import Header from '../components/Header';
 
 const Form = styled.form`
   padding: 24px;
-  
 `;
 
 const Button = styled.button`
@@ -20,7 +17,6 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   margin-top: 16px;
-  
   color: white;
   background-color: #222466;
 `;

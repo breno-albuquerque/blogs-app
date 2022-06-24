@@ -4,7 +4,6 @@ import { login, register } from '../services/requests';
 import './Login.css';
 import LoginComponent from '../components/LoginComponent';
 import RegisterComponent from '../components/RegisterComponent';
-import Header from '../components/Header';
 
 function Login() {
   const navigate = useNavigate();
