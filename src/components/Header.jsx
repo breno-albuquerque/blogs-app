@@ -26,7 +26,7 @@ function Header({ fixed }) {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const [isDisabled, setisDisabled] = useState(true);
-
+  
   useEffect(() => {
     if (token) {
       setisDisabled(false);

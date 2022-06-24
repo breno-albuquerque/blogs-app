@@ -14,6 +14,15 @@ const Button = styled.button`
   color: white;
 `;
 
+const Div = styled.div`
+  @media (max-width: 991px) {
+    margin-top: 10vh;
+  }
+  @media (max-width: 360px) {
+    margin-top: 12vh;
+  }
+`;
+
 function RegisterComponent({ handleChange, userData, handleClick }) {
   const {
     email, password, displayName, image,
@@ -22,7 +31,7 @@ function RegisterComponent({ handleChange, userData, handleClick }) {
   return (
     <section className="vh-100">
       <Header fixed />
-      <div className="container-fluid h-custom">
+      <Div className="container-fluid h-custom">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-md-9 col-lg-6 col-xl-5">
             <img
@@ -99,7 +108,7 @@ function RegisterComponent({ handleChange, userData, handleClick }) {
             </form>
           </div>
         </div>
-      </div>
+      </Div>
     </section>
   );
 }
