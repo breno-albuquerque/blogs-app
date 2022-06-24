@@ -68,8 +68,6 @@ const getAll = async () => {
   const postsFormat = posts.map((post) =>
     ({ ...post.dataValues, distance: formatDistanceToNowStrict(post.published) }));
 
-    console.log(postsFormat);
-
   return postsFormat;
 };
 
@@ -121,20 +119,15 @@ const getByQuery = async (query) => {
         { title: { [Op.like]: `%${query.q}%` } }, { content: { [Op.like]: `%${query.q}%` } },
       ] },
     include: [
-      {
-        model: User,
-        as: 'user',
-        attributes: { exclude: 'password' },
-      },
-      {
-        model: Category,
-        as: 'categories',
-        through: { attributes: [] },
-      },
+      { model: User, as: 'user', attributes: { exclude: 'password' } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
     ],
   });
 
-  return posts;
+  const postsFormat = posts.map((post) =>
+    ({ ...post.dataValues, distance: formatDistanceToNowStrict(post.published) }));
+
+  return postsFormat;
 };
 
 module.exports = {
