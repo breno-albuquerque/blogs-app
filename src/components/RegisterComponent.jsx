@@ -1,4 +1,5 @@
-import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
+import { MDBInput } from 'mdb-react-ui-kit';
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import Header from './Header';
@@ -112,5 +113,11 @@ function RegisterComponent({ handleChange, userData, handleClick }) {
     </section>
   );
 }
+
+RegisterComponent.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  userData: PropTypes.objectOf(PropTypes.string).isRequired,
+};
 
 export default RegisterComponent;
