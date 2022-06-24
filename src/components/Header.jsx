@@ -13,7 +13,6 @@ import {
 import styled from 'styled-components';
 
 const NavTitle = styled.h1`
-
   color: #222466;
 
   font-size: 28px;
@@ -22,7 +21,7 @@ const NavTitle = styled.h1`
   padding: 0;
 `;
 
-function Header() {
+function Header({ fixed }) {
   const [showNav, setShowNav] = useState(false);
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
@@ -51,7 +50,14 @@ function Header() {
 
   return (
 
-    <MDBNavbar sticky expand="lg" light bgColor="light">
+    <MDBNavbar
+      fixed={fixed ? 'top' : null}
+      sticky={!fixed}
+      expand="lg"
+      light
+      bgColor="light"
+    >
+
       <MDBContainer fluid>
         <NavTitle>Blog API</NavTitle>
         <MDBNavbarToggler

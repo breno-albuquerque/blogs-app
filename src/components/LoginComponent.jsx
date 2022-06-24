@@ -14,12 +14,20 @@ const Button = styled.button`
   color: white;
 `;
 
+const Section = styled.section`
+  height: 100vh;
+
+  @media (max-width: 991px) {
+    margin-top: 20vh;
+  }
+`
+
 function LoginComponent({ handleChange, userData, handleClick }) {
   const { email, password } = userData;
 
   return (
-    <section className="vh-100">
-      <Header />
+    <Section>
+      <Header fixed />
       <div className="container-fluid h-custom">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-md-9 col-lg-6 col-xl-5">
@@ -75,7 +83,7 @@ function LoginComponent({ handleChange, userData, handleClick }) {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
