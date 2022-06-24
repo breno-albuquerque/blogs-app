@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const { formatDistanceToNowStrict } = require('date-fns');
 const { BlogPost, PostCategory, Category, User } = require('../database/models');
 const CustomError = require('../helpers/CustomError');
 const config = require('../database/config/config.js');
@@ -64,7 +65,12 @@ const getAll = async () => {
     ],
   });
 
-  return posts;
+  const postsFormat = posts.map((post) =>
+    ({ ...post.dataValues, distance: formatDistanceToNowStrict(post.published) }));
+
+    console.log(postsFormat);
+
+  return postsFormat;
 };
 
 const getOne = async (id) => {

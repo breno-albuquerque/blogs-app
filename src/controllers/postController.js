@@ -13,7 +13,7 @@ const create = async (req, res, next) => {
 const getAll = async (req, res, next) => {
   try {
     const posts = await postService.getAll();
-    res.status(200).json(posts);
+    res.status(200).send(posts);
   } catch (error) {
     next(error);
   }
@@ -59,7 +59,6 @@ const remove = async (req, res, next) => {
 
 const getByQuery = async (req, res, next) => {
   try {
-    console.log(req.query);
     const posts = await postService.getByQuery(req.query);
     res.status(200).json(posts);
   } catch (error) {
