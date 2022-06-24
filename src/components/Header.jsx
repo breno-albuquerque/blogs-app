@@ -11,6 +11,7 @@ import {
   MDBNavbarLink,
 } from 'mdb-react-ui-kit';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const NavTitle = styled.h1`
   color: #222466;
@@ -26,7 +27,7 @@ function Header({ fixed }) {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const [isDisabled, setisDisabled] = useState(true);
-  
+
   useEffect(() => {
     if (token) {
       setisDisabled(false);
@@ -116,4 +117,13 @@ function Header({ fixed }) {
     </MDBNavbar>
   );
 }
+
+Header.propTypes = {
+  fixed: PropTypes.bool,
+};
+
+Header.defaultProps = {
+  fixed: false,
+};
+
 export default Header;
