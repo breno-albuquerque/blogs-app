@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
-import {
-  MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardText, MDBCardTitle, MDBInput, MDBListGroup, MDBListGroupItem,
-} from 'mdb-react-ui-kit';
+import { MDBInput } from 'mdb-react-ui-kit';
 import styled from 'styled-components';
 import { deleteBlogPost, getBlogPosts } from '../services/requests';
 import Header from '../components/Header';
@@ -24,8 +22,6 @@ const Button = styled.button`
   
   color: white;
   background-color: #222466;
-
-
 `;
 
 const RemoveBtn = styled.button`
@@ -47,7 +43,7 @@ const EditBtn = styled.button`
   border: none;
   text-decoration: nonde;
   font-size: 18px;
-`
+`;
 
 const Card = styled.section`
   display: flex;
@@ -259,42 +255,7 @@ function BlogPosts() {
           </Card>
         );
       }) }
-
     </>
-
-  /*  <article key={id} id={id}>
-            <h3>{ title }</h3>
-            { categories.map((category) => (
-              <span key={category.id}>
-                { category.name }
-                {' '}
-              </span>
-            )) }
-            <p>
-              {' '}
-              { content }
-              {' '}
-            </p>
-            <p>{ displayName }</p>
-            <img width={100} alt="profile user" src={image} />
-            { userId === decoded.id && (
-              <div>
-                <button
-                  type="button"
-                  onClick={handleRemoveClick}
-                >
-                  Remove
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleEditClick(id)}
-                >
-                  Edit
-                </button>
-              </div>
-            ) }
-          </article> */
-
   );
 }
 
