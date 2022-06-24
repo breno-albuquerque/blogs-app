@@ -104,7 +104,7 @@ const ButtonsContainer = styled.div`
 
 function BlogCard(props) {
   const {
-    post, decoded, handleEditClick, handleRemoveClick,
+    post, decodedId, handleEditClick, handleRemoveClick,
   } = props;
 
   const {
@@ -135,13 +135,13 @@ function BlogCard(props) {
       </CardText>
       <TagsContainer>
         { categories.map((category) => (
-          <CardTag>
+          <CardTag key={category.id}>
             #
             {category.name}
           </CardTag>
         )) }
       </TagsContainer>
-      { userId === decoded.id && (
+      { userId === decodedId && (
       <ButtonsContainer>
         <EditBtn
           type="button"
@@ -161,5 +161,30 @@ function BlogCard(props) {
     </Card>
   );
 }
+
+BlogCard.propTypes = {
+  post: PropTypes.shape({
+    categories: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    })),
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      displayName: PropTypes.string,
+      email: PropTypes.string,
+      image: PropTypes.string,
+    }),
+    content: PropTypes.string,
+    distance: PropTypes.string,
+    id: PropTypes.number,
+    published: PropTypes.string,
+    title: PropTypes.string,
+    updated: PropTypes.string,
+    userId: PropTypes.number,
+  }).isRequired,
+  decodedId: PropTypes.number.isRequired,
+  handleEditClick: PropTypes.func.isRequired,
+  handleRemoveClick: PropTypes.func.isRequired,
+};
 
 export default BlogCard;

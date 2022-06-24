@@ -99,7 +99,7 @@ function BlogPosts() {
         <BlogCard
           key={post.id}
           post={post}
-          decoded={decoded}
+          decodedId={decoded.id}
           handleEditClick={handleEditClick}
           handleRemoveClick={handleRemoveClick}
         />
