@@ -1,5 +1,6 @@
 import React from 'react';
-import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
+import PropTypes from 'prop-types';
+import { MDBInput } from 'mdb-react-ui-kit';
 import styled from 'styled-components';
 import TogglePages from './TogglePages';
 import Header from './Header';
@@ -91,5 +92,11 @@ function LoginComponent({ handleChange, userData, handleClick }) {
     </Section>
   );
 }
+
+LoginComponent.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  userData: PropTypes.objectOf(PropTypes.string).isRequired,
+};
 
 export default LoginComponent;

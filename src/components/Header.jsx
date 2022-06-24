@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import {
   MDBContainer,
@@ -11,7 +12,6 @@ import {
   MDBNavbarLink,
 } from 'mdb-react-ui-kit';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 const NavTitle = styled.h1`
   color: #222466;
