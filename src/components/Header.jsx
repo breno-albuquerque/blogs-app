@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import {
-  MDBContainer,
-  MDBNavbar,
-  MDBNavbarToggler,
-  MDBNavbarNav,
-  MDBNavbarItem,
-  MDBCollapse,
-  MDBIcon,
-  MDBNavbarLink,
-} from 'mdb-react-ui-kit';
 import styled from 'styled-components';
+import {
+  MDBContainer, MDBNavbar, MDBNavbarToggler,
+  MDBNavbarNav, MDBNavbarItem, MDBCollapse,
+  MDBIcon, MDBNavbarLink,
+} from 'mdb-react-ui-kit';
 
 const NavTitle = styled.h1`
   color: #222466;
-
   font-size: 28px;
   margin: 16px;
   margin-right: 24px;

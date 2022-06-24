@@ -53,11 +53,8 @@ const Card = styled.section`
   max-width: 500px;
   margin: 50px auto;
   padding: 16px;
-/*   border-bottom: 1px solid black; */
   min-height: 360px;
-  
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-
   box-sizing: border-box;
 
   @media (max-width: 374px) {
@@ -106,7 +103,7 @@ const UserImage = styled.img`
 `;
 
 const CardHeader = styled.header`
-width: 100%;
+  width: 100%;
   align-items: center;
   display: flex;
   align-self: flex-start;
@@ -121,7 +118,7 @@ const CardDates = styled.div`
 `;
 
 const ButtonsContainer = styled.div`
-display: flex;
+  display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
@@ -225,14 +222,12 @@ function BlogPosts() {
               { content }
             </CardText>
             <TagsContainer>
-
               { categories.map((category) => (
                 <CardTag>
                   #
                   {category.name}
                 </CardTag>
               )) }
-
             </TagsContainer>
             { userId === decoded.id && (
             <ButtonsContainer>
@@ -241,7 +236,6 @@ function BlogPosts() {
                 onClick={() => handleEditClick(id)}
               >
                 Edit
-
               </EditBtn>
               <RemoveBtn
                 className="bg-danger"
