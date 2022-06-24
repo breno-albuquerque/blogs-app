@@ -24,19 +24,30 @@ const Button = styled.button`
   
   color: white;
   background-color: #222466;
+
+
 `;
 
-const CardButton = styled.button`
+const RemoveBtn = styled.button`
   text-decoration: none;
-  padding: 4px;
+  width: 40px;
+  padding: 6px;
   border: none;
   border-radius: 5px;
-  margin-top: 16px;
   margin-right: 16px;
-  
+  font-family: 'Material Icons';
+  font-size: 20px;
   color: white;
   background-color: #222466;
 `;
+
+const EditBtn = styled.button`
+  background: none;
+  color: #222466;
+  border: none;
+  text-decoration: nonde;
+  font-size: 18px;
+`
 
 const Card = styled.section`
   display: flex;
@@ -52,6 +63,10 @@ const Card = styled.section`
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
   box-sizing: border-box;
+
+  @media (max-width: 374px) {
+    min-height: 400px;
+  }
 `;
 
 const CardTitle = styled.p`
@@ -75,6 +90,7 @@ const CardText = styled.p`
 
 const CardTag = styled.span`
   margin-right: 8px;
+  color: #222466;
 `;
 
 const User = styled.div`
@@ -103,11 +119,16 @@ width: 100%;
 `;
 
 const CardDates = styled.div`
-  
+  @media (max-width: 374px) {
+   margin-top: 8px;
+  }
 `;
 
 const ButtonsContainer = styled.div`
-  align-self: flex-end;
+display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 function BlogPosts() {
@@ -120,7 +141,7 @@ function BlogPosts() {
   useEffect(() => {
     const fetchPost = async () => {
       const data = await getBlogPosts(token);
-      setPosts(data);
+      setPosts(data.reverse());
     };
 
     fetchPost();
@@ -133,13 +154,13 @@ function BlogPosts() {
 
   const handleSearchClick = async () => {
     const data = await getBlogPosts(token, search);
-    setPosts(data);
+    setPosts(data.reverse());
     setSearch('');
   };
 
   const handleAllClick = async () => {
     const data = await getBlogPosts(token);
-    setPosts(data);
+    setPosts(data.reverse());
     setSearch('');
   };
 
@@ -180,7 +201,7 @@ function BlogPosts() {
         </Button>
       </Form>
 
-      { posts && posts.reverse().map((post) => {
+      { posts && posts.map((post) => {
         const {
           id, title, content, userId, distance, user, categories,
         } = post;
@@ -219,20 +240,20 @@ function BlogPosts() {
             </TagsContainer>
             { userId === decoded.id && (
             <ButtonsContainer>
-              <CardButton
+              <EditBtn
                 type="button"
                 onClick={() => handleEditClick(id)}
               >
                 Edit
 
-              </CardButton>
-              <CardButton
+              </EditBtn>
+              <RemoveBtn
+                className="bg-danger"
                 type="button"
                 onClick={() => handleRemoveClick(id)}
               >
-                X
-
-              </CardButton>
+                delete
+              </RemoveBtn>
             </ButtonsContainer>
             ) }
           </Card>
