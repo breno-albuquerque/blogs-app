@@ -4,19 +4,19 @@ module.exports = {
       [
         {
           id: 1,
-          title: 'Post do Ano',
-          content: 'Melhor post do ano',
+          title: 'Try TypeScript!',
+          content: 'If you already learned how to manipulate the DOM using JavaScript, you should get to know TypeScript!',
           userId: 1,
-          published: new Date('2011-08-01T19:58:00.000Z'),
-          updated: new Date('2011-08-01T19:58:51.000Z'),
+          published: new Date('2020-08-01T19:58:00.000Z'),
+          updated: new Date('2020-08-01T19:58:51.000Z'),
         },
         {
           id: 2,
-          title: 'Vamos que vamos',
-          content: 'Foguete não tem ré',
-          userId: 1,
-          published: new Date('2011-08-01T19:58:00.000Z'),
-          updated: new Date('2011-08-01T19:58:51.000Z'),
+          title: 'Start with Python!',
+          content: 'Python is a great language to begginers, it is high level and easy to learn comapring to others languages',
+          userId: 2,
+          published: new Date('2021-08-01T19:58:00.000Z'),
+          updated: new Date('2021-08-01T19:58:51.000Z'),
         },
       ]);
   },

@@ -4,11 +4,31 @@ module.exports = {
       [
         {
           id: 1,
-          name: 'Inovação',
+          name: 'TypeScript',
         },
         {
           id: 2,
-          name: 'Escola',
+          name: 'Python',
+        },
+        {
+          id: 3,
+          name: 'Node.js',
+        },
+        {
+          id: 4,
+          name: 'Docker',
+        },
+        {
+          id: 5,
+          name: 'MySQL',
+        },
+        {
+          id: 6,
+          name: 'React',
+        },
+        {
+          id: 7,
+          name: 'Flask',
         },
       ], { timestamps: false });
   },
