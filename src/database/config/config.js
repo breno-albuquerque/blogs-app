@@ -5,14 +5,10 @@ module.exports = {
   development: {
     username: process.env.MYSQL_USER || 'root',
     port: process.env.MYSQL_PORT || '3306',
-    password: process.env.MYSQL_PASSWORD || '1234',
+    password: process.env.MYSQL_PASSWORD || 'password',
     database: process.env.MYSQL_DB_NAME || 'blogs-api-dev',
-    host: process.env.HOSTNAME || process.env.MYSQL_HOST || 'localhost',
+    host: process.env.MYSQL_HOST || 'localhost',
     dialect: 'mysql',
-    logging: process.env.DEBUG !== 'false',
-    dialectOptions: {
-      timezone: 'Z',
-    },
   },
   test: {
     username: process.env.USER,
