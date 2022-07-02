@@ -11,6 +11,10 @@ const Form = styled.form`
   padding: 24px;
 `;
 
+const CardContainer = styled.div`
+  padding: 16px;
+`;
+
 const Button = styled.button`
   text-decoration: none;
   max-width: 200px;
@@ -95,15 +99,17 @@ function BlogPosts() {
         </Button>
       </Form>
 
-      { posts && posts.map((post) => (
-        <BlogCard
-          key={post.id}
-          post={post}
-          decodedId={decoded.id}
-          handleEditClick={handleEditClick}
-          handleRemoveClick={handleRemoveClick}
-        />
-      )) }
+      <CardContainer>
+        { posts && posts.map((post) => (
+          <BlogCard
+            key={post.id}
+            post={post}
+            decodedId={decoded.id}
+            handleEditClick={handleEditClick}
+            handleRemoveClick={handleRemoveClick}
+          />
+        )) }
+      </CardContainer>
     </>
   );
 }

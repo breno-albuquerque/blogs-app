@@ -2,104 +2,149 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const RemoveBtn = styled.button`
-  text-decoration: none;
-  width: 40px;
-  padding: 6px;
-  border: none;
+const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 800px;
+  justify-content: space-between;
+
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-sizing: border-box;
+  margin: 50px auto;
   border-radius: 5px;
-  margin-right: 16px;
-  font-family: 'Material Icons';
-  font-size: 20px;
-  color: white;
-  background-color: #222466;
+  max-width: 300px;
+  
+  @media (min-width: 640px) {
+    max-width: 1000px;
+    flex-direction: row;
+    min-height: initial;
+    align-items: stretch;
+  }
 `;
 
-const EditBtn = styled.button`
-  background: none;
-  color: #222466;
-  border: none;
-  text-decoration: nonde;
-  font-size: 18px;
-`;
-
-const Card = styled.section`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 16px;
-  min-height: 360px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  box-sizing: border-box;
+  flex-grow: 1;
 
-  @media (max-width: 374px) {
-    min-height: 400px;
+  @media (min-width: 640px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
   }
 `;
 
-const CardTitle = styled.p`
-font-weight: 900;
-  align-self: flex-start;
-  font-size: 22px;
-  margin: 0;
-`;
-
-const TagsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-self: flex-start;
-`;
-
-const CardText = styled.p`
-  align-self: flex-start;
-  word-break: break-all;
-  margin: 0;
-`;
-
-const CardTag = styled.span`
-  margin-right: 8px;
-  color: #222466;
-`;
-
-const User = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const UserName = styled.div`
-  font-weight: 900;
-`;
-
-const UserImage = styled.img`
-  border-radius: 100%;
-  width: 60px;
-  height: 60px;
-  margin-right: 8px;
-`;
-
-const CardHeader = styled.header`
+const Image = styled.img`
   width: 100%;
-  align-items: center;
-  display: flex;
-  align-self: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 16px;
+
+  @media (min-width: 640px) {
+    margin-bottom: 0;
+    max-width: 300px;
+    border-radius: 5px 0 0 5px;
+  }
 `;
 
-const CardDates = styled.div`
-  @media (max-width: 374px) {
-   margin-top: 8px;
-  }
+const Box = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 8px;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
+
+const UserBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+`;
+
+const Name = styled.p`
+  font-size: 20px;
+  text-align: left;
+
+`;
+
+const Date = styled.p`
+  font-size: 18px;
+  text-align: left;
+  width: 100%;
 `;
 
 const ButtonsContainer = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-end;
+`;
+
+const RemoveBtn = styled.button`
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-family: 'Material Icons';
+  font-size: 20px;
+`;
+
+const EditBtn = styled.button`
+  background: none;
+  border: none;
+  text-decoration: none;
+  font-size: 18px;
+`;
+
+const ContentBox = styled.div`
+  display: flex;
+  flex-direction: column;
   align-items: center;
+`;
+
+const PostTitle = styled.p`
+  font-size: 24px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 16px;
+`;
+
+const PostContent = styled.p`
+  font-size: 18px;
+  width: 100%;
+  text-align: justify;
+  padding: 8px;
+`;
+
+const CategoryBox = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+`;
+
+const Category = styled.span`
+  margin-left: 4px;
+`;
+
+const LikeBox = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const LikeText = styled.p`
+  font-size: 18px;
+`;
+
+const LikeButton = styled.button`
+  text-decoration: none;
+  font-size: 28px;
+  border: none;
+  font-family: 'Material Icons';
+  background: none;
+  color: black;
 `;
 
 function BlogCard(props) {
@@ -108,56 +153,72 @@ function BlogCard(props) {
   } = props;
 
   const {
-    id, title, content, userId, distance, user, categories,
+    id, title, content, userId, distance, user, categories, likes, usersWhoLiked,
   } = post;
   const { displayName, image } = user;
 
   return (
     <Card>
-      <CardHeader>
-        <User>
-          <UserImage src={image} />
-          <UserName>
-            {displayName}
-          </UserName>
-        </User>
-        <CardDates>
-          <div>
-            { distance }
+      <Image src={image} />
+      <Container>
+        <Box>
+          <UserBox>
+            <Name>
+              { displayName }
+            </Name>
+            <Date>
+              { distance }
+              {' '}
+              ago
+            </Date>
+          </UserBox>
+          { userId === decodedId && (
+          <ButtonsContainer>
+            <EditBtn
+              type="button"
+              onClick={() => handleEditClick(id)}
+            >
+              Edit
+            </EditBtn>
+            <RemoveBtn
+              type="button"
+              onClick={() => handleRemoveClick(id)}
+            >
+              delete
+            </RemoveBtn>
+          </ButtonsContainer>
+          ) }
+        </Box>
+
+        <ContentBox>
+          <PostTitle>
+            { title }
+          </PostTitle>
+          <PostContent>
+            { content }
+          </PostContent>
+        </ContentBox>
+
+        <CategoryBox>
+          { categories.map((category) => (
+            <Category>
+              #
+              {category.name}
+            </Category>
+          )) }
+        </CategoryBox>
+
+        <LikeBox>
+          <LikeText>
+            Likes:
             {' '}
-            ago.
-          </div>
-        </CardDates>
-      </CardHeader>
-      <CardTitle>{ title }</CardTitle>
-      <CardText>
-        { content }
-      </CardText>
-      <TagsContainer>
-        { categories.map((category) => (
-          <CardTag key={category.id}>
-            #
-            {category.name}
-          </CardTag>
-        )) }
-      </TagsContainer>
-      { userId === decodedId && (
-      <ButtonsContainer>
-        <EditBtn
-          type="button"
-          onClick={() => handleEditClick(id)}
-        >
-          Edit
-        </EditBtn>
-        <RemoveBtn
-          className="bg-danger"
-          type="button"
-          onClick={() => handleRemoveClick(id)}
-        >
-          delete
-        </RemoveBtn>
-      </ButtonsContainer>
-      ) }
+            { likes }
+          </LikeText>
+          <LikeButton>
+            favorite
+          </LikeButton>
+        </LikeBox>
+      </Container>
     </Card>
   );
 }
