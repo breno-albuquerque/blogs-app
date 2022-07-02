@@ -3,7 +3,7 @@ import handleError from '../helpers/handleError';
 
 const makeInstance = (token) => {
   const instanceToken = axios.create({
-    baseURL: 'http://localhost:3000/',
+    baseURL: 'http://localhost:3001/',
     headers: { authorization: token },
   });
 
@@ -11,7 +11,7 @@ const makeInstance = (token) => {
 };
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'http://localhost:3001/',
 });
 
 export const getUsers = async (id = null) => {
