@@ -20,19 +20,15 @@
   },
   "main": "src/server.js",
   "scripts": {
-    "prestart": "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
+    "start": "node server.js",
     "drop": "npx sequelize-cli db:drop",
     "seed": "npx sequelize-cli db:seed:all",
-    "debug": "nodemon .",
-    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
+    "debug": "nodemon ."
   },
   "devDependencies": {
-    "eslint": "6.8.0",
-    "eslint-config-airbnb-base": "14.2.0",
-    "eslint-config-trybe-backend": "1.0.3",
-    "eslint-plugin-import": "2.22.1",
-    "frisby": "2.1.2",
-    "jest": "26.0.1",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "jest-each": "^28.0.1",
     "nodemon": "^2.0.15",
     "sequelize-cli": "6.2.0",
