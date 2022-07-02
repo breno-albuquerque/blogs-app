@@ -28,7 +28,7 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   color: white;
-  margin-top: 16px;
+  margin-top: 24px;
   background-color: #222466;
 `;
 

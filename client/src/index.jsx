@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import 'normalize.css';
 import './styles/index.css';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
