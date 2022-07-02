@@ -2,7 +2,9 @@ const { User } = require('../database/models');
 const CustomError = require('../helpers/CustomError');
 const { generateToken } = require('../helpers/JwtToken');
 
-const register = async ({ displayName, email, password, image }) => {
+const register = async ({
+  displayName, email, password, image,
+}) => {
   //  Verifica se usuário já existe:
   const rows = await User.findAll({
     attributes: ['email'],
@@ -17,7 +19,7 @@ const register = async ({ displayName, email, password, image }) => {
     id: newUser.dataValues.id,
     displayName: newUser.dataValues.displayName,
     email: newUser.dataValues.email,
-   });
+  });
 
   return token;
 };
@@ -27,7 +29,7 @@ const get = async (id) => {
     const users = await User.findAll({
       attributes: { exclude: 'password' },
     });
-  
+
     return users;
   }
 

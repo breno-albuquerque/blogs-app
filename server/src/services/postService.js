@@ -4,7 +4,7 @@ const {
   BlogPost, PostCategory, Category, User,
 } = require('../database/models');
 const CustomError = require('../helpers/CustomError');
-const config = require('../database/config/config.js');
+const config = require('../database/config/config');
 
 const sequelize = new Sequelize(config.development);
 const { Op } = Sequelize;
@@ -134,7 +134,8 @@ const getByQuery = async (query) => {
     ],
   });
 
-  const postsFormat = posts.map((post) => ({ ...post.dataValues, distance: formatDistanceToNowStrict(post.published) }));
+  const postsFormat = posts.map((post) => (
+    { ...post.dataValues, distance: formatDistanceToNowStrict(post.published) }));
 
   return postsFormat;
 };
