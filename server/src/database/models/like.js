@@ -27,7 +27,7 @@ const likesSchema = (sequelize, DataTypes) => {
       through: likesTable,
       foreignKey: 'postId',
       otherKey: 'userId',
-      as: 'categories',
+      as: 'postsLiked',
     });
   };
 
