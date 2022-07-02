@@ -18,7 +18,6 @@ const CheckboxContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin-bottom: 26px;
 `;
 
 const Button = styled.button`

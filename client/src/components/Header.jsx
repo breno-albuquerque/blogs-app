@@ -90,9 +90,9 @@ function Header({ fixed }) {
                 disabled={isDisabled}
                 className="me-3"
                 type="button"
-                onClick={(event) => handleRedirectClick(event, 'categories')}
+                onClick={(event) => handleRedirectClick(event, 'profile')}
               >
-                Categories
+                Profile
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
