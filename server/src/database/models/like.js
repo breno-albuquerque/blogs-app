@@ -1,15 +1,18 @@
 const likesSchema = (sequelize, DataTypes) => {
-  const likesTable = sequelize.define('Like', {
-    postId: {
-      type: DataTypes.INTEGER,
-      foreignKey: true
+  const likesTable = sequelize.define(
+    'Like',
+    {
+      postId: {
+        type: DataTypes.INTEGER,
+        foreignKey: true,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        foreignKey: true,
+      },
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      foreignKey: true
-    }
-  },
-  { timestamps: false });
+    { timestamps: false },
+  );
 
   likesTable.associate = (models) => {
     models.BlogPost.belongsToMany(models.User, {
@@ -17,7 +20,7 @@ const likesSchema = (sequelize, DataTypes) => {
       foreignKey: 'userId',
       otherKey: 'postId',
       as: 'usersWhoLiked',
-      onDelete: 'CASCADE'
+      onDelete: 'CASCADE',
     });
 
     models.User.belongsToMany(models.BlogPost, {
@@ -26,9 +29,9 @@ const likesSchema = (sequelize, DataTypes) => {
       otherKey: 'userId',
       as: 'categories',
     });
-  }
+  };
 
   return likesTable;
-}
+};
 
 module.exports = likesSchema;
