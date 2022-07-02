@@ -149,7 +149,7 @@ const LikeButton = styled.button`
 
 function BlogCard(props) {
   const {
-    post, decodedId, handleEditClick, handleRemoveClick,
+    post, decodedId, handleEditClick, handleRemoveClick, handleLikeClick,
   } = props;
 
   const {
@@ -214,7 +214,10 @@ function BlogCard(props) {
             {' '}
             { likes }
           </LikeText>
-          <LikeButton>
+          <LikeButton
+            type="button"
+            onClick={() => handleLikeClick(id)}
+          >
             favorite
           </LikeButton>
         </LikeBox>

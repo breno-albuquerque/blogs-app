@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { MDBInput } from 'mdb-react-ui-kit';
 import styled from 'styled-components';
-import { deleteBlogPost, getBlogPosts } from '../services/requests';
+import { deleteBlogPost, getBlogPosts, like } from '../services/requests';
 import Header from '../components/Header';
 import BlogCard from '../components/BlogCard';
 
@@ -36,12 +36,12 @@ function BlogPosts() {
   const decoded = jwtDecode(token);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      const data = await getBlogPosts(token);
-      setPosts(data.reverse());
-    };
+  const fetchPost = async () => {
+    const data = await getBlogPosts(token);
+    setPosts(data.reverse());
+  };
 
+  useEffect(() => {
     fetchPost();
   }, []);
 
@@ -69,6 +69,11 @@ function BlogPosts() {
 
   const handleEditClick = async (id) => {
     navigate('/publish', { state: { editing: true, id } });
+  };
+
+  const handleLikeClick = async (postId) => {
+    await like(token, postId);
+    await fetchPost();
   };
 
   if (!token) return navigate('/');
@@ -107,6 +112,7 @@ function BlogPosts() {
             decodedId={decoded.id}
             handleEditClick={handleEditClick}
             handleRemoveClick={handleRemoveClick}
+            handleLikeClick={handleLikeClick}
           />
         )) }
       </CardContainer>
