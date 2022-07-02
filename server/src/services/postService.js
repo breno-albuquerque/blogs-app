@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize');
 const { formatDistanceToNowStrict } = require('date-fns');
-const { BlogPost, PostCategory, Category, User } = require('../database/models');
+const {
+  BlogPost, PostCategory, Category, User,
+} = require('../database/models');
 const CustomError = require('../helpers/CustomError');
 const config = require('../database/config/config.js');
 
@@ -36,12 +38,10 @@ const create = async ({ title, content, categoryIds }, { id }) => {
     }, { transaction: t });
 
     //  Cria coluna(s) no postCategory:
-    await PostCategory.bulkCreate(
-      categoryIds.map((categoryId) => ({
-        categoryId,
-        postId: post.dataValues.id,
-      })), { transaction: t },
-    );
+    await PostCategory.bulkCreate(categoryIds.map((categoryId) => ({
+      categoryId,
+      postId: post.dataValues.id,
+    })), { transaction: t });
   });
 
   //  Retorna dados do post criado:
@@ -58,6 +58,11 @@ const getAll = async () => {
         attributes: { exclude: 'password' },
       },
       {
+        model: User,
+        as: 'usersWhoLiked',
+        attributes: ['id'],
+      },
+      {
         model: Category,
         as: 'categories',
         through: { attributes: [] },
@@ -65,8 +70,11 @@ const getAll = async () => {
     ],
   });
 
-  const postsFormat = posts.map((post) =>
-    ({ ...post.dataValues, distance: formatDistanceToNowStrict(post.published) }));
+  const postsFormat = posts.map((post) => ({
+    ...post.dataValues,
+    distance: formatDistanceToNowStrict(post.published),
+    likes: post.usersWhoLiked.length,
+  }));
 
   return postsFormat;
 };
@@ -87,7 +95,7 @@ const getOne = async (id) => {
       },
     ],
   });
-  
+
   if (!post) throw new CustomError(404, 'Post does not exist');
   return post;
 };
@@ -115,17 +123,18 @@ const remove = async (postId, { id }) => {
 const getByQuery = async (query) => {
   // WHERE title LIKE %query.q% OR content LIKE %query.q%
   const posts = await await BlogPost.findAll({
-    where: { [Op.or]: [
+    where: {
+      [Op.or]: [
         { title: { [Op.like]: `%${query.q}%` } }, { content: { [Op.like]: `%${query.q}%` } },
-      ] },
+      ],
+    },
     include: [
       { model: User, as: 'user', attributes: { exclude: 'password' } },
       { model: Category, as: 'categories', through: { attributes: [] } },
     ],
   });
 
-  const postsFormat = posts.map((post) =>
-    ({ ...post.dataValues, distance: formatDistanceToNowStrict(post.published) }));
+  const postsFormat = posts.map((post) => ({ ...post.dataValues, distance: formatDistanceToNowStrict(post.published) }));
 
   return postsFormat;
 };

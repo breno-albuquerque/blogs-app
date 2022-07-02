@@ -15,19 +15,18 @@ const likesSchema = (sequelize, DataTypes) => {
   );
 
   likesTable.associate = (models) => {
-    models.BlogPost.belongsToMany(models.User, {
+    models.User.belongsToMany(models.BlogPost, {
       through: likesTable,
       foreignKey: 'userId',
       otherKey: 'postId',
-      as: 'usersWhoLiked',
-      onDelete: 'CASCADE',
+      as: 'postsLiked',
     });
 
-    models.User.belongsToMany(models.BlogPost, {
+    models.BlogPost.belongsToMany(models.User, {
       through: likesTable,
       foreignKey: 'postId',
       otherKey: 'userId',
-      as: 'postsLiked',
+      as: 'usersWhoLiked',
     });
   };
 
