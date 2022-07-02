@@ -14,14 +14,15 @@ const instance = axios.create({
   baseURL: 'http://localhost:3001/',
 });
 
-export const getUsers = async (id = null) => {
+export const getUsers = async (token, id = null) => {
   try {
+    const instanceToken = makeInstance(token);
     let endpoint;
 
     if (id) endpoint = `/user/${id}`;
     else endpoint = '/user';
 
-    const response = await instance.get(endpoint);
+    const response = await instanceToken.get(endpoint);
     return response.data;
   } catch (error) {
     return handleError(error);
