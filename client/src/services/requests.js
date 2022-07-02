@@ -116,3 +116,13 @@ export const deleteBlogPost = async (token, userId) => {
     return handleError(error);
   }
 };
+
+export const like = async (token, postId) => {
+  try {
+    const instanceToken = makeInstance(token);
+    const response = await instanceToken.post(`/like/${postId}`);
+    return response.data;
+  } catch (error) {
+    return handleError(error);
+  }
+};
