@@ -242,6 +242,7 @@ BlogCard.propTypes = {
     title: PropTypes.string,
     updated: PropTypes.string,
     userId: PropTypes.number,
+    likes: PropTypes.number,
   }).isRequired,
   decodedId: PropTypes.number.isRequired,
   handleEditClick: PropTypes.func.isRequired,

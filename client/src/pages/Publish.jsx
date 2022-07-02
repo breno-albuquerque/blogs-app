@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { MDBInput, MDBTextArea, MDBCheckbox } from 'mdb-react-ui-kit';
-import { edit, getCategories, publish } from '../services/requests';
+import {
+  createCategory, edit, getCategories, publish,
+} from '../services/requests';
 import Header from '../components/Header';
 
 const Form = styled.form`
@@ -27,6 +29,7 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   color: white;
+  margin-top: 16px;
   background-color: #222466;
 `;
 
@@ -41,6 +44,7 @@ function Publish() {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const location = useLocation();
+  const [category, setCategory] = useState('');
   const [categoriesState, setCategoriesState] = useState();
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [postData, setPostData] = useState({
@@ -50,12 +54,12 @@ function Publish() {
   });
 
   //  Pega as categorias da API
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const data = await getCategories(token);
-      setCategoriesState(data);
-    };
+  const fetchCategories = async () => {
+    const data = await getCategories(token);
+    setCategoriesState(data);
+  };
 
+  useEffect(() => {
     fetchCategories();
   }, []);
 
@@ -69,6 +73,8 @@ function Publish() {
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
+
+    if (name === 'category') return setCategory(value);
 
     setPostData((prev) => ({
       ...prev,
@@ -85,13 +91,18 @@ function Publish() {
     });
   };
 
-  const handleClick = async () => {
+  const handlePostClick = async () => {
     if (location.state.editing) {
       await edit(token, postData, location.state.id);
     } else {
       await publish(token, postData);
     }
     navigate('/blogPosts');
+  };
+
+  const handleCategoryClick = async () => {
+    await createCategory(token, category);
+    await fetchCategories();
   };
 
   const { title, content } = postData;
@@ -125,8 +136,8 @@ function Publish() {
 
         <CheckboxContainer>
           { (categoriesState && !location.state.editing)
-      && categoriesState.map((category) => {
-        const { name, id } = category;
+      && categoriesState.map((cat) => {
+        const { name, id } = cat;
 
         return (
           <MDBCheckbox
@@ -143,9 +154,25 @@ function Publish() {
 
         <Button
           type="button"
-          onClick={handleClick}
+          onClick={handlePostClick}
         >
           { location.state.editing ? 'Edit' : 'Publish'}
+        </Button>
+      </Form>
+      <Form>
+        <Title>Create a new Category!</Title>
+        <MDBInput
+          type="text"
+          name="category"
+          value={category}
+          label="New Category"
+          onChange={handleChange}
+        />
+        <Button
+          type="button"
+          onClick={handleCategoryClick}
+        >
+          Create
         </Button>
       </Form>
     </>
