@@ -67,13 +67,15 @@ const UserBox = styled.div`
 const Name = styled.p`
   font-size: 20px;
   text-align: left;
-
+  font-weight: bold;
 `;
 
 const Date = styled.p`
   font-size: 18px;
   text-align: left;
   width: 100%;
+  color: #6C757D;
+  font-weight: bold;
 `;
 
 const ButtonsContainer = styled.div`
@@ -87,7 +89,12 @@ const RemoveBtn = styled.button`
   background: none;
   border: none;
   font-family: 'Material Icons';
-  font-size: 20px;
+  font-size: 28px;
+  color: #ef3f46;
+
+  &:hover{
+    transform: scale(1.1);
+  }
 `;
 
 const EditBtn = styled.button`
@@ -95,6 +102,11 @@ const EditBtn = styled.button`
   border: none;
   text-decoration: none;
   font-size: 18px;
+  color: #222466;
+
+  &:hover{
+    transform: scale(1.1);
+  }
 `;
 
 const ContentBox = styled.div`
@@ -108,6 +120,8 @@ const PostTitle = styled.p`
   width: 100%;
   text-align: center;
   margin-bottom: 16px;
+  font-weight: bold;
+  color: #222466;
 `;
 
 const PostContent = styled.p`
@@ -125,6 +139,7 @@ const CategoryBox = styled.div`
 
 const Category = styled.span`
   margin-left: 4px;
+  color: #222466;
 `;
 
 const LikeBox = styled.div`
@@ -136,6 +151,7 @@ const LikeBox = styled.div`
 
 const LikeText = styled.p`
   font-size: 18px;
+  margin-right: 8px;
 `;
 
 const LikeButton = styled.button`
@@ -145,6 +161,11 @@ const LikeButton = styled.button`
   font-family: 'Material Icons';
   background: none;
   color: black;
+  transform: all ease 0.1s;
+
+  &:hover{
+    transform: scale(1.1);
+  }
 `;
 
 function BlogCard(props) {

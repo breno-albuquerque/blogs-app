@@ -10,13 +10,13 @@ import {
 const NavTitle = styled.h1`
   color: #ef3f46;
   font-size: 28px;
+  font-weight: 900;
   margin: 16px;
   margin-right: 24px;
   padding: 0;
 `;
 
 function Header({ fixed }) {
-  const [showNav, setShowNav] = useState(false);
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const [isDisabled, setisDisabled] = useState(true);

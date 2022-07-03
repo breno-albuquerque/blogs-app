@@ -46,6 +46,7 @@ const SubBox = styled.div`
 const Before = styled.p`
   font-weight: 900;
   font-size: 26px;
+  margin-bottom: 8px;
 `;
 
 const Name = styled.p`
