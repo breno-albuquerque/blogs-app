@@ -7,6 +7,7 @@ const Card = styled.div`
   flex-direction: column;
   min-height: 800px;
   justify-content: space-between;
+  background-color: white;
 
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   box-sizing: border-box;
