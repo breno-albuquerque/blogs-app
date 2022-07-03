@@ -3,6 +3,7 @@ import jwtDecode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { MDBInput } from 'mdb-react-ui-kit';
 import styled from 'styled-components';
+import toast, { Toaster } from 'react-hot-toast';
 import { deleteBlogPost, getBlogPosts, like } from '../services/requests';
 import Header from '../components/Header';
 import BlogCard from '../components/BlogCard';
@@ -79,8 +80,14 @@ function BlogPosts() {
   };
 
   const handleLikeClick = async (postId) => {
-    await like(token, postId);
+    const data = await like(token, postId);
+
+    if (data.code === 'ERR_BAD_REQUEST') {
+      return toast(data.response.data.message);
+    }
+
     await fetchPost();
+    return null;
   };
 
   if (!token) return navigate('/');
@@ -88,6 +95,7 @@ function BlogPosts() {
   return (
     <>
       <Header />
+      <Toaster />
       <Title>
         Posts Timeline
       </Title>

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import handleError from '../helpers/handleError';
 
 const makeInstance = (token) => {
   const instanceToken = axios.create({
