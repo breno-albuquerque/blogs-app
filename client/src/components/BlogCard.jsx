@@ -162,7 +162,7 @@ const LikeButton = styled.button`
   border: none;
   font-family: 'Material Icons';
   background: none;
-  color: black;
+  color: ${(props) => (props.liked ? '#ef3f46' : 'black')};
   transform: all ease 0.1s;
 
   &:hover{
@@ -238,6 +238,7 @@ function BlogCard(props) {
             { likes }
           </LikeText>
           <LikeButton
+            liked={usersWhoLiked.some((item) => item.id === decodedId)}
             type="button"
             onClick={() => handleLikeClick(id)}
           >

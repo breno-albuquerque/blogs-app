@@ -12,7 +12,7 @@ const NavTitle = styled.h1`
   font-size: 28px;
   font-weight: 900;
   margin: 16px;
-  margin-right: 24px;
+  margin-right: 48px;
   padding: 0;
 `;
 
