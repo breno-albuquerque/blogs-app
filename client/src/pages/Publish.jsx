@@ -107,8 +107,14 @@ function Publish() {
   };
 
   const handleCategoryClick = async () => {
-    await createCategory(token, category);
+    const data = await createCategory(token, category);
+
+    if (data.code === 'ERR_BAD_REQUEST') {
+      return toast(data.response.data.message);
+    }
+
     await fetchCategories();
+    return null;
   };
 
   const { title, content } = postData;
@@ -166,6 +172,7 @@ function Publish() {
           { location.state.editing ? 'Edit' : 'Publish'}
         </Button>
       </Form>
+      {!location.state.editing && (
       <Form>
         <Title>Create a new Category!</Title>
         <MDBInput
@@ -182,6 +189,8 @@ function Publish() {
           Create
         </Button>
       </Form>
+      )}
+
     </>
   );
 }

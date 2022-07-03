@@ -127,3 +127,13 @@ export const like = async (token, postId) => {
     return error;
   }
 };
+
+export const deleteUser = async (token) => {
+  try {
+    const instanceToken = makeInstance(token);
+    const response = await instanceToken.delete('/user/me');
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};

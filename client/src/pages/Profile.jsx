@@ -1,8 +1,10 @@
 import jwtDecode from 'jwt-decode';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-import { getUsers } from '../services/requests';
+import { deleteUser, getUsers } from '../services/requests';
 
 const Title = styled.h2`
   text-align: center;
@@ -82,6 +84,7 @@ const Button = styled.button`
 
 function Profile() {
   const [user, setUser] = useState();
+  const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const decoded = jwtDecode(token);
 
@@ -96,11 +99,21 @@ function Profile() {
 
   if (!user) return null;
 
+  const handleDeleteUser = async () => {
+    const data = await deleteUser(token);
+    if (data.code === 'ERR_BAD_REQUEST') {
+      return toast(data.response.data.message);
+    }
+
+    return navigate('/');
+  };
+
   const { displayName, email, image } = user;
 
   return (
     <>
       <Header />
+      <Toaster />
       <Title>
         Your Account Profile
       </Title>
@@ -117,14 +130,17 @@ function Profile() {
           </SubBox>
           <SubBox>
             <Before>
-              UserName:
+              Email:
             </Before>
             <Email>
               { email }
             </Email>
           </SubBox>
 
-          <Button>
+          <Button
+            type="button"
+            onClick={handleDeleteUser}
+          >
             Delete Account
           </Button>
         </Box>
