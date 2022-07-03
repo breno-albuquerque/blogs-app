@@ -20,6 +20,7 @@ const likesSchema = (sequelize, DataTypes) => {
       foreignKey: 'userId',
       otherKey: 'postId',
       as: 'postsLiked',
+      onDelete: 'CASCADE',
     });
 
     models.BlogPost.belongsToMany(models.User, {
@@ -27,6 +28,7 @@ const likesSchema = (sequelize, DataTypes) => {
       foreignKey: 'postId',
       otherKey: 'userId',
       as: 'usersWhoLiked',
+      onDelete: 'CASCADE',
     });
   };
 

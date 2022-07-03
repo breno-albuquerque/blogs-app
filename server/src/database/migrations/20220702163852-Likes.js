@@ -8,14 +8,16 @@ module.exports = {
         references: {
           model: 'BlogPosts',
           Key: 'id'
-        }
+        },
+        onDelete: 'CASCADE'
       },
       userId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE'
       }
     })
   },
