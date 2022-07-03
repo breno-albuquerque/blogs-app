@@ -7,6 +7,10 @@ function validatePost(req, _res, next) {
     throw new CustomError('400', 'Some required fields are missing');
   }
 
+  if (title.length > 255 || content.length > 255) {
+    throw new CustomError('400', 'The max number of characters is 255');
+  }
+
   next();
 }
 
