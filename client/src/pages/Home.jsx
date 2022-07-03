@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { login, register } from '../services/requests';
 import '../styles/Login.css';
 import LoginComponent from '../components/LoginComponent';
@@ -40,15 +41,25 @@ function Login() {
   };
 
   const handleRegisterClick = async () => {
-    const token = await register(userRegisterData);
-    localStorage.setItem('token', token);
-    navigate('/blogPosts');
+    const data = await register(userRegisterData);
+
+    if (data.code === 'ERR_BAD_REQUEST') {
+      return toast(data.response.data.message);
+    }
+
+    localStorage.setItem('token', data);
+    return navigate('/blogPosts');
   };
 
   const handleLoginClick = async () => {
-    const token = await login(userLoginData);
-    localStorage.setItem('token', token);
-    navigate('/blogPosts');
+    const data = await login(userLoginData);
+
+    if (data.code === 'ERR_BAD_REQUEST') {
+      return toast(data.response.data.message);
+    }
+
+    localStorage.setItem('token', data);
+    return navigate('/blogPosts');
   };
 
   if (location.state === null || location.state === 'login') {

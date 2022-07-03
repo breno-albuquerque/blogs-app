@@ -25,7 +25,7 @@ export const getUsers = async (token, id = null) => {
     const response = await instanceToken.get(endpoint);
     return response.data;
   } catch (error) {
-    return handleError(error);
+    return error;
   }
 };
 
@@ -40,7 +40,7 @@ export const getBlogPosts = async (token, q = null) => {
     const response = await instanceToken.get(endpoint);
     return response.data;
   } catch (error) {
-    return handleError(error);
+    return error;
   }
 };
 
@@ -50,7 +50,7 @@ export const getCategories = async (token) => {
     const response = await instanceToken.get('/categories');
     return response.data;
   } catch (error) {
-    return handleError(error);
+    return error;
   }
 };
 
@@ -59,7 +59,7 @@ export const register = async (userData) => {
     const response = await instance.post('/user', userData);
     return response.data.token;
   } catch (error) {
-    return handleError(error);
+    return error;
   }
 };
 
@@ -68,7 +68,7 @@ export const login = async (userData) => {
     const response = await instance.post('/login', userData);
     return response.data.token;
   } catch (error) {
-    return handleError(error);
+    return error;
   }
 };
 
@@ -78,7 +78,7 @@ export const publish = async (token, postData) => {
     const response = await instanceToken.post('/post', postData);
     return response.data;
   } catch (error) {
-    return handleError(error);
+    return error;
   }
 };
 
@@ -94,7 +94,7 @@ export const edit = async (token, postData, id) => {
     const response = await instanceToken.put(`/post/${id}`, editData);
     return response.data;
   } catch (error) {
-    return handleError(error);
+    return error;
   }
 };
 
@@ -104,7 +104,7 @@ export const createCategory = async (token, category) => {
     const response = await instanceToken.post('/categories', { name: category });
     return response.data;
   } catch (error) {
-    return handleError(error);
+    return error;
   }
 };
 
@@ -114,7 +114,7 @@ export const deleteBlogPost = async (token, userId) => {
     const response = await instanceToken.delete(`/post/${userId}`);
     return response.data;
   } catch (error) {
-    return handleError(error);
+    return error;
   }
 };
 
@@ -124,6 +124,6 @@ export const like = async (token, postId) => {
     const response = await instanceToken.post(`/like/${postId}`);
     return response.data;
   } catch (error) {
-    return handleError(error);
+    return error;
   }
 };

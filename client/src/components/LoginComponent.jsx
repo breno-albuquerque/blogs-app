@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MDBInput } from 'mdb-react-ui-kit';
 import styled from 'styled-components';
+import { Toaster } from 'react-hot-toast';
 import TogglePages from './TogglePages';
 import Header from './Header';
-import Footer from './Footer';
 
 const Button = styled.button`
   text-decoration: none;
@@ -36,6 +36,7 @@ function LoginComponent({ handleChange, userData, handleClick }) {
   return (
     <Section>
       <Header fixed />
+      <Toaster />
       <Div className="container-fluid h-custom">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-md-9 col-lg-6 col-xl-5">

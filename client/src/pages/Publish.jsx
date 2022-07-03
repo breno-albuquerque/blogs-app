@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { MDBInput, MDBTextArea, MDBCheckbox } from 'mdb-react-ui-kit';
+import toast, { Toaster } from 'react-hot-toast';
 import {
   createCategory, edit, getCategories, publish,
 } from '../services/requests';
@@ -75,7 +76,7 @@ function Publish() {
 
     if (name === 'category') return setCategory(value);
 
-    setPostData((prev) => ({
+    return setPostData((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -92,11 +93,17 @@ function Publish() {
 
   const handlePostClick = async () => {
     if (location.state.editing) {
-      await edit(token, postData, location.state.id);
+      const data = await edit(token, postData, location.state.id);
+      if (data.code === 'ERR_BAD_REQUEST') {
+        return toast(data.response.data.message);
+      }
     } else {
-      await publish(token, postData);
+      const data = await publish(token, postData);
+      if (data.code === 'ERR_BAD_REQUEST') {
+        return toast(data.response.data.message);
+      }
     }
-    navigate('/blogPosts');
+    return navigate('/blogPosts');
   };
 
   const handleCategoryClick = async () => {
@@ -111,6 +118,7 @@ function Publish() {
   return (
     <>
       <Header />
+      <Toaster />
       <Form>
         <Title>Publish your Post!</Title>
         <MDBInput

@@ -2,6 +2,7 @@ import { MDBInput } from 'mdb-react-ui-kit';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import { Toaster } from 'react-hot-toast';
 import Header from './Header';
 import TogglePages from './TogglePages';
 
@@ -31,6 +32,7 @@ function RegisterComponent({ handleChange, userData, handleClick }) {
 
   return (
     <section className="vh-100">
+      <Toaster />
       <Header fixed />
       <Div className="container-fluid h-custom">
         <div className="row d-flex justify-content-center align-items-center h-100">

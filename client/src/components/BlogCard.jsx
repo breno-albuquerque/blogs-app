@@ -9,7 +9,7 @@ const Card = styled.div`
   justify-content: space-between;
   background-color: white;
 
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   box-sizing: border-box;
   margin: 50px auto;
   border-radius: 5px;
@@ -114,6 +114,7 @@ const ContentBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  word-break: break-all;
 `;
 
 const PostTitle = styled.p`
