@@ -76,7 +76,7 @@ const Button = styled.button`
   border-radius: 5px;
   color: white;
   margin-top: 24px;
-  background-color: #222466;
+  background-color: #ef3f46;
 `;
 
 function Profile() {

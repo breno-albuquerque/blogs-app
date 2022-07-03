@@ -9,7 +9,7 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   color: ${(props) => props.active && 'white'};;
-  background-color: ${(props) => props.active && '#222466'};
+  background-color: ${(props) => props.active && '#ef3f46'};
 `;
 
 function TogglePages() {

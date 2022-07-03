@@ -29,6 +29,13 @@ const Button = styled.button`
   background-color: #222466;
 `;
 
+const Title = styled.h2`
+  text-align: center;
+  font-size: 26px;
+  color: #222466;
+  margin-top: 32px;
+`;
+
 function BlogPosts() {
   const [search, setSearch] = useState('');
   const [posts, setPosts] = useState([]);
@@ -81,7 +88,9 @@ function BlogPosts() {
   return (
     <>
       <Header />
-
+      <Title>
+        Posts Timeline
+      </Title>
       <Form>
         <MDBInput
           onChange={handleChange}

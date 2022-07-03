@@ -4,6 +4,7 @@ import { MDBInput } from 'mdb-react-ui-kit';
 import styled from 'styled-components';
 import TogglePages from './TogglePages';
 import Header from './Header';
+import Footer from './Footer';
 
 const Button = styled.button`
   text-decoration: none;
@@ -17,6 +18,7 @@ const Button = styled.button`
 
 const Section = styled.section`
   height: 100vh;
+  background-image: url('./CurveLine.svg');
 `;
 
 const Div = styled.div`
