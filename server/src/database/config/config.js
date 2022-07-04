@@ -3,11 +3,11 @@ dotenv.config();
 
 module.exports = {
   development: {
-    username: process.env.MYSQL_USERNAME || 'root',
-    port: process.env.MYSQL_PORT || '3306',
-    password: process.env.MYSQL_PASSWORD || 'password',
-    database: process.env.MYSQL_DB_NAME || 'blogs-api-dev',
-    host: process.env.MYSQL_HOST || 'localhost',
+    username: process.env.MYSQL_USERNAME,
+    port: process.env.MYSQL_PORT,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DB,
+    host: process.env.MYSQL_HOST,
     dialect: 'mysql',
   },
   test: {
