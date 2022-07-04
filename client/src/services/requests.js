@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const makeInstance = (token) => {
   const instanceToken = axios.create({
-    baseURL: process.env.REACT_APP_SEVER_URL,
+    baseURL: process.env.REACT_APP_SERVER_URL,
     headers: { authorization: token },
   });
 
@@ -10,7 +10,7 @@ const makeInstance = (token) => {
 };
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_SEVER_URL,
+  baseURL: process.env.REACT_APP_SERVER_URL,
 });
 
 export const getUsers = async (token, id = null) => {
