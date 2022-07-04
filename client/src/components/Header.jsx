@@ -52,7 +52,7 @@ function Header({ fixed }) {
       className="navbar-dark"
     >
       <Container>
-        <NavTitle>Blog API</NavTitle>
+        <NavTitle>Blog App</NavTitle>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>

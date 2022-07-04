@@ -126,7 +126,7 @@ function Publish() {
       <Header />
       <Toaster />
       <Form>
-        <Title>Publish your Post!</Title>
+        <Title>Publish your Article!</Title>
         <MDBInput
           type="text"
           wrapperClass="mb-4"
