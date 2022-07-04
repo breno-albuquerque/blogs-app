@@ -131,11 +131,17 @@ const getByQuery = async (query) => {
     include: [
       { model: User, as: 'user', attributes: { exclude: 'password' } },
       { model: Category, as: 'categories', through: { attributes: [] } },
+      { model: User, as: 'usersWhoLiked', attributes: ['id'] },
     ],
+
   });
 
   const postsFormat = posts.map((post) => (
-    { ...post.dataValues, distance: formatDistanceToNowStrict(post.published) }));
+    {
+      ...post.dataValues,
+      distance: formatDistanceToNowStrict(post.published),
+      likes: post.usersWhoLiked.length,
+    }));
 
   return postsFormat;
 };
