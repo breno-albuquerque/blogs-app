@@ -262,6 +262,13 @@ BlogCard.propTypes = {
       email: PropTypes.string,
       image: PropTypes.string,
     }),
+    usersWhoLiked: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      Like: PropTypes.shape({
+        postId: PropTypes.number,
+        userId: PropTypes.number,
+      }),
+    })),
     content: PropTypes.string,
     distance: PropTypes.string,
     id: PropTypes.number,
@@ -274,6 +281,7 @@ BlogCard.propTypes = {
   decodedId: PropTypes.number.isRequired,
   handleEditClick: PropTypes.func.isRequired,
   handleRemoveClick: PropTypes.func.isRequired,
+  handleLikeClick: PropTypes.func.isRequired,
 };
 
 export default BlogCard;
