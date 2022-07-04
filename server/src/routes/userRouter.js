@@ -5,10 +5,12 @@ const Router = express.Router();
 const userController = require('../controllers/userController');
 const middlewares = require('../middlewares');
 
-Router.post('/',
+Router.post(
+  '/',
   middlewares.validateFieldsPresence,
   middlewares.validadeFieldsRules,
-  userController.register);
+  userController.register,
+);
 
 Router.get('/', middlewares.validateToken, userController.get);
 Router.get('/:id', middlewares.validateToken, userController.get);
