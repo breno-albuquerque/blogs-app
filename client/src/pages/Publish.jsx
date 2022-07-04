@@ -113,6 +113,7 @@ function Publish() {
       return toast(data.response.data.message);
     }
 
+    setCategory('');
     await fetchCategories();
     return null;
   };
