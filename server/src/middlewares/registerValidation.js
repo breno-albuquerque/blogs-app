@@ -3,7 +3,9 @@ const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const CustomError = require('../helpers/CustomError');
 
 function validateFieldsPresence(req, _res, next) {
-  const { displayName, email, password, image } = req.body;
+  const {
+    displayName, email, password, image,
+  } = req.body;
 
   if (!displayName || !email || !password || !image) {
     throw new CustomError(400, 'Some required fields are missing');
