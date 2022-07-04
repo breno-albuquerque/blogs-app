@@ -25,7 +25,7 @@ async function verifyCategories(categories) {
 
 const create = async ({ title, content, categoryIds }, { id }) => {
   // Verifica se categorias existem:
-  await verifyCategories(categoryIds);
+  //  await verifyCategories(categoryIds);
 
   // Transaction:
   await sequelize.transaction(async (t) => {
