@@ -37,11 +37,15 @@ const create = async ({ title, content, categoryIds }, { id }) => {
       userId: id,
     }, { transaction: t });
 
+    console.log(post);
+
     //  Cria coluna(s) no postCategory:
     await PostCategory.bulkCreate(categoryIds.map((categoryId) => ({
       categoryId,
       postId: post.dataValues.id,
     })), { transaction: t });
+
+    console.log(PostCategory);
   });
 
   //  Retorna dados do post criado:
