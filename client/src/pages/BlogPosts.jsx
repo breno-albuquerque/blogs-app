@@ -101,6 +101,7 @@ function BlogPosts() {
       </Title>
       <Form>
         <MDBInput
+          autoComplete="off"
           onChange={handleChange}
           type="text"
           name="search"
