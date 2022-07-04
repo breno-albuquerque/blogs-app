@@ -177,6 +177,7 @@ function Publish() {
       <Form>
         <Title>Create a new Category!</Title>
         <MDBInput
+          autoComplete="off"
           type="text"
           name="category"
           value={category}
