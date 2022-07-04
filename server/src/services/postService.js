@@ -4,9 +4,9 @@ const {
   BlogPost, PostCategory, Category, User,
 } = require('../database/models');
 const CustomError = require('../helpers/CustomError');
-const config = require('../database/config/config');
+//  const config = require('../database/config/config');
 
-const sequelize = new Sequelize(config.development);
+//  const sequelize = new Sequelize(config.development);
 const { Op } = Sequelize;
 
 async function verifyCategories(categories) {
@@ -25,28 +25,28 @@ async function verifyCategories(categories) {
 
 const create = async ({ title, content, categoryIds }, { id }) => {
   // Verifica se categorias existem:
-  //  await verifyCategories(categoryIds);
+  await verifyCategories(categoryIds);
 
   // Transaction:
-  await sequelize.transaction(async (t) => {
-    //  Cria coluna no BlogPost:
-    const post = await BlogPost.create({
-      title,
-      content,
-      categoryIds,
-      userId: id,
-    }, { transaction: t });
+  // await sequelize.transaction(async (t) => {
+  //  Cria coluna no BlogPost:
+  const post = await BlogPost.create({
+    title,
+    content,
+    categoryIds,
+    userId: id,
+  }/* , { transaction: t } */);
 
-    console.log(post);
+  console.log(post);
 
-    //  Cria coluna(s) no postCategory:
-    await PostCategory.bulkCreate(categoryIds.map((categoryId) => ({
-      categoryId,
-      postId: post.dataValues.id,
-    })), { transaction: t });
+  //  Cria coluna(s) no postCategory:
+  await PostCategory.bulkCreate(categoryIds.map((categoryId) => ({
+    categoryId,
+    postId: post.dataValues.id,
+  }))/* , { transaction: t } */);
 
-    console.log(PostCategory);
-  });
+  console.log(PostCategory);
+  // });
 
   //  Retorna dados do post criado:
   const fullPost = await BlogPost.findOne({ where: { title } });
