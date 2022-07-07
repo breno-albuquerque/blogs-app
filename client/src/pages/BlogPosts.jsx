@@ -75,8 +75,8 @@ function BlogPosts() {
   const handleRemoveClick = async (id) => {
     setIsloading(true);
     await deleteBlogPost(token, id);
-    setIsloading(false);
     await handleAllClick();
+    setIsloading(false);
   };
 
   const handleEditClick = async (id) => {
@@ -103,9 +103,13 @@ function BlogPosts() {
 
       {isLoading && <Load />}
 
+      {!isLoading && (
       <Title>
         Posts Timeline
       </Title>
+      ) }
+
+      {!isLoading && (
       <Form>
         <MDBInput
           autoComplete="off"
@@ -128,6 +132,7 @@ function BlogPosts() {
           See All
         </Button>
       </Form>
+      )}
 
       {!isLoading && (
       <CardContainer>
