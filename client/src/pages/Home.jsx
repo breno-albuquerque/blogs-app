@@ -7,6 +7,7 @@ import LoginComponent from '../components/LoginComponent';
 import RegisterComponent from '../components/RegisterComponent';
 
 function Login() {
+  const [isLoading, setIsloading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -41,7 +42,9 @@ function Login() {
   };
 
   const handleRegisterClick = async () => {
+    setIsloading(true);
     const data = await register(userRegisterData);
+    setIsloading(false);
 
     if (data.code === 'ERR_BAD_REQUEST') {
       return toast(data.response.data.message);
@@ -52,7 +55,9 @@ function Login() {
   };
 
   const handleLoginClick = async () => {
+    setIsloading(true);
     const data = await login(userLoginData);
+    setIsloading(false);
 
     if (data.code === 'ERR_BAD_REQUEST') {
       return toast(data.response.data.message);
@@ -65,6 +70,7 @@ function Login() {
   if (location.state === null || location.state === 'login') {
     return (
       <LoginComponent
+        isLoading={isLoading}
         handleChange={handleLoginChange}
         handleClick={handleLoginClick}
         userData={userLoginData}
@@ -73,6 +79,7 @@ function Login() {
   }
   return (
     <RegisterComponent
+      isLoading={isLoading}
       handleChange={handleRegisterChange}
       handleClick={handleRegisterClick}
       userData={userRegisterData}
