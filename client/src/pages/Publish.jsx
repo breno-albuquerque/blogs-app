@@ -7,6 +7,7 @@ import {
   createCategory, edit, getCategories, publish,
 } from '../services/requests';
 import Header from '../components/Header';
+import Load from '../components/Load';
 
 const Form = styled.form`
   padding: 24px;
@@ -41,6 +42,7 @@ const Title = styled.h2`
 `;
 
 function Publish() {
+  const [isLoading, setIsloading] = useState(false);
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const location = useLocation();
@@ -93,12 +95,16 @@ function Publish() {
 
   const handlePostClick = async () => {
     if (location.state.editing) {
+      setIsloading(true);
       const data = await edit(token, postData, location.state.id);
+      setIsloading(false);
       if (data.code === 'ERR_BAD_REQUEST') {
         return toast(data.response.data.message);
       }
     } else {
+      setIsloading(true);
       const data = await publish(token, postData);
+      setIsloading(false);
       if (data.code === 'ERR_BAD_REQUEST') {
         return toast(data.response.data.message);
       }
@@ -126,6 +132,10 @@ function Publish() {
     <>
       <Header />
       <Toaster />
+
+      {isLoading && <Load /> }
+
+      {!isLoading && (
       <Form>
         <Title>Publish your Article!</Title>
         <MDBInput
@@ -174,7 +184,8 @@ function Publish() {
           { location.state.editing ? 'Edit' : 'Publish'}
         </Button>
       </Form>
-      {!location.state.editing && (
+      )}
+      {(!location.state.editing && !isLoading) && (
       <Form>
         <Title>Create a new Category!</Title>
         <MDBInput
