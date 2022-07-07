@@ -10,10 +10,21 @@ const rotate = keyframes`
   }
 `;
 
-const Box = styled.div`
+const Container = styled.div`
+  color: #222466;
+  font-weight: 900;
+  height: 70px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: space-between;
   position: absolute;
-  top: calc(50% - 75px);
-  left: calc(50% - 75px);
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+`;
+
+const Circle = styled.div`
+
 
   display: flex;
   align-items: center;
@@ -21,17 +32,18 @@ const Box = styled.div`
   animation: ${rotate} infinite 5s linear;
 
   border-radius: 100%;
-  width: 150px;
-  height: 150px;
+  width: 40px;
+  height: 40px;
   z-index: 10;
   border: dotted #ef3f46 5px;
 `;
 
 function Load() {
   return (
-    <Box>
+    <Container>
+      <Circle />
       <p>Loading</p>
-    </Box>
+    </Container>
   );
 }
 
