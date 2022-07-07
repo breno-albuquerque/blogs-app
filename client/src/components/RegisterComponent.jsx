@@ -128,6 +128,7 @@ RegisterComponent.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
   userData: PropTypes.objectOf(PropTypes.string).isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default RegisterComponent;
