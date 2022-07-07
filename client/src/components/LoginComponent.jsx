@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Toaster } from 'react-hot-toast';
 import TogglePages from './TogglePages';
 import Header from './Header';
-import Load from './components/Load';
+import Load from './Load';
 
 const Button = styled.button`
   text-decoration: none;
