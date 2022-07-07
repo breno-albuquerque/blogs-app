@@ -7,6 +7,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { deleteBlogPost, getBlogPosts, like } from '../services/requests';
 import Header from '../components/Header';
 import BlogCard from '../components/BlogCard';
+import Load from '../components/Load';
 
 const Form = styled.form`
   padding: 24px;
@@ -38,6 +39,7 @@ const Title = styled.h2`
 `;
 
 function BlogPosts() {
+  const [isLoading, setIsloading] = useState(false);
   const [search, setSearch] = useState('');
   const [posts, setPosts] = useState([]);
   const token = localStorage.getItem('token');
@@ -71,7 +73,9 @@ function BlogPosts() {
   };
 
   const handleRemoveClick = async (id) => {
+    setIsloading(true);
     await deleteBlogPost(token, id);
+    setIsloading(false);
     await handleAllClick();
   };
 
@@ -96,6 +100,9 @@ function BlogPosts() {
     <>
       <Header />
       <Toaster />
+
+      {isLoading && <Load />}
+
       <Title>
         Posts Timeline
       </Title>
@@ -122,6 +129,7 @@ function BlogPosts() {
         </Button>
       </Form>
 
+      {!isLoading && (
       <CardContainer>
         { posts && posts.map((post) => (
           <BlogCard
@@ -134,6 +142,7 @@ function BlogPosts() {
           />
         )) }
       </CardContainer>
+      )}
     </>
   );
 }
